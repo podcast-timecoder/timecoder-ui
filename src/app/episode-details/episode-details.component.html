@@ -1,0 +1,27 @@
+<div *ngIf="episode">
+  <h2>{{episode.name | uppercase}} details</h2>
+</div>
+
+<div class="col-md-6">
+  <h2 class="text-center">Add theme</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  
+    <div class="form-group">
+      <label for="themeTitle">Theme title:</label>
+      <input formControlName="title" placeholder="title" name="title" class="form-control" id="themeTitle">
+    </div>
+
+    <button class="btn btn-success">Add</button>
+  </form>
+</div>
+
+<h3>Themes</h3>
+<div *ngFor="let theme of episode?.themeList">
+  <div>
+    <span class="badge" (click)="onSelect(theme)">- {{ theme.title }}</span>
+    <span class="badge">{{ theme.timestamp }}</span>
+    <button class="btn btn-danger" (click)="track(theme)"> Track</button>
+  </div>  
+</div>
+
+<button (click)="goBack()">go back</button>

@@ -1,0 +1,21 @@
+<div class="col-md-6">
+  <h2> Episodes</h2>
+  <button class="btn btn-danger" (click)="addEpisode()"> Add Episode</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let episode of episodes">
+      <td class="hidden"></td>
+      <td>{{ episode.id }}</td>
+      <td>{{ episode.name }}</td>
+      <td></td>
+      <td><button class="btn btn-danger" (click)="showDetails(episode)"> Details</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
