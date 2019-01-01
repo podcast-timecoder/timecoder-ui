@@ -1,16 +1,15 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
-    <a class="navbar-brand" href="/episode-list">Timecoder</a>
+    <a class="navbar-brand" href="#">Timecoder</a>
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
-    
+          <form class="form-inline">
+              <button type="button" class="nav-item btn nav-button btn-outline-light" (click)="goHome()">Home</button>
+              <button type="button" class="nav-item btn nav-button btn-outline-success" (click)="addEpisode()">Add episode</button>
+          </form>
       </div>
     </div>
     <div class="navbar-expand ml-auto navbar-nav">
       <div class="navbar-nav">
-        <form class="form-inline">
-          <button type="button" class="nav-item btn nav-button btn-outline-light" (click)="goHome()">Home</button>
-          <button type="button" class="nav-item btn nav-button btn-outline-success" (click)="addEpisode()">Add episode</button>
-        </form>
         <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
           <i class="fa fa-github"></i>
         </a>

@@ -1,4 +1,9 @@
 .item {
     margin-left: 15px;
     width: 100px;
+    float:right;
+}
+
+.episode-header {
+    padding-bottom: 20px;
 }

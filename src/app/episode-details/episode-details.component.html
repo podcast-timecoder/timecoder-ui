@@ -1,15 +1,15 @@
 <div *ngIf="episode" class="container">
-  <div class="row">
+  <div class="row episode-header">
     <div class="col-4">
       <h2>{{episode.name}}</h2>
     </div>
     <div class="col-8">
       <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-2">
-          <label class="sr-only" for="themeTitle">Theme:</label>
-          <input formControlName="title" placeholder="title" name="title" class="form-control" id="themeTitle">
+          <!-- <label for="themeTitle">Add theme</label> -->
+          <input formControlName="title" placeholder="Add theme" name="title" class="form-control" id="themeTitle">
         </div>
-        <button type="submit" class="btn-sm btn-success mb-2">Add theme</button>
+        <!-- <button type="submit" class="btn-sm btn-success mb-2">Add theme</button> -->
       </form>
     </div>
   </div>
@@ -28,7 +28,7 @@
                     <tr *ngFor="let theme of episode?.themeList">
                       <td>- {{ theme.title }}</td>
                       <td>{{ theme.timestamp }}</td>
-                      <td><button class="btn btn-danger item" (click)="track(theme)">Track</button></td>
+                      <td><button class="btn btn-dark item" (click)="track(theme)">Track</button></td>
                     </tr>
                   </tbody>
             </table>
