@@ -4,6 +4,6 @@
     float:right;
 }
 
-.episode-header {
+.episode-header, .start-ep-block {
     padding-bottom: 20px;
 }

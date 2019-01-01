@@ -46,8 +46,11 @@ export class EpisodeDetailsComponent implements OnInit {
     this.addForm.reset();
   }
 
-  track(theme: Theme) {
-     this.episodeService.updateTimestamp(theme).subscribe(data => { this.getServiceDetails()
-     });
+  track(episode:  Episode, theme: Theme) {
+     this.episodeService.updateTimestamp(episode.id, theme).subscribe(data => { this.getServiceDetails()});
+  }
+
+  startEpisode(episode: Episode){
+    this.episodeService.updateTimestamp(episode.id, episode.themeList[0]).subscribe(data => {});
   }
 }

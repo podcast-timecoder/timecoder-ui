@@ -3,4 +3,5 @@ export class Theme {
     title: string;
     timestamp: Date;
     episodeId: number;
+    timecode: string;
 }

@@ -32,7 +32,11 @@ export class EpisodeService {
     return this.apiClient.post<Theme>(this.themeBaseUrl, value)
   }
 
-  updateTimestamp(theme: Theme): any {
-    return this.apiClient.post(`${this.themeBaseUrl}/${theme.id}/timestamp`, null)
+  updateTimestamp(episodeId: Number, theme: Theme): any {
+    return this.apiClient.post(`${this.baseUrl}/${episodeId}/theme/${theme.id}/timestamp`, null)
+  }
+
+  startEpisode(episode: Episode): any {
+    return this.apiClient.post(`${this.baseUrl}/${episode.id}/start}`, {})
   }
 }

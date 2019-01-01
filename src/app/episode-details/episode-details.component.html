@@ -13,6 +13,9 @@
       </form>
     </div>
   </div>
+  <div class="row start-ep-block">
+    <button type="button" class="btn btn-warning btn-lg btn-block" [disabled]='episode.isStarted' (click)="startEpisode(episode)">Start episode</button>
+  </div>
   <div class="row">
         <div class="table-responsive">
             <table class="table table-hover">
@@ -20,15 +23,15 @@
                 <thead class="thead-light">
                   <tr>
                     <th class="hidden">Title</th>
-                    <th>Timestamp</th>
+                    <th>Timecode</th>
                     <th></th>
                   </tr>
                 </thead>
                   <tbody>
                     <tr *ngFor="let theme of episode?.themeList">
                       <td>- {{ theme.title }}</td>
-                      <td>{{ theme.timestamp }}</td>
-                      <td><button class="btn btn-dark item" (click)="track(theme)">Track</button></td>
+                      <td>{{ theme.timecode }}</td>
+                      <td><button class="btn btn-dark item" (click)="track(episode, theme)">Track</button></td>
                     </tr>
                   </tbody>
             </table>
