@@ -12,6 +12,9 @@ import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { AddEpisodeComponent } from './add-episode/add-episode.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { UiModule } from './ui/ui.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,14 @@ import { EpisodeDetailsComponent } from './episode-details/episode-details.compo
     routing,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    UiModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
