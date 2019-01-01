@@ -19,10 +19,6 @@ export class EpisodeListComponent implements OnInit {
       .subscribe(data => this.episodes = data)
   }
 
-  addEpisode(): void {
-    this.router.navigate(['add-episode']);
-  };
-
   showDetails(episode: Episode){
     this.router.navigate([`episode-details/${episode.id}`]);
   }

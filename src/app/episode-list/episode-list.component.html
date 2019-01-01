@@ -1,13 +1,10 @@
-<h2> Episodes</h2>
-<div>
-    <button class="btn btn-warning" (click)="addEpisode()">Add Episode</button>
-</div>
-<div>
+<div class="table row">
   <table class="table table-striped">
       <thead>
       <tr>
         <th class="hidden">Id</th>
         <th>Name</th>
+        <th>Themes count</th>
         <th></th>
       </tr>
       </thead>
@@ -15,7 +12,8 @@
       <tr *ngFor="let episode of episodes">
         <td>{{ episode.id }}</td>
         <td>{{ episode.name }}</td>
-        <td><button class="btn btn-danger" (click)="showDetails(episode)"> Details</button></td>
+        <td>{{ episode.themeList?.length }}</td>
+        <td><button class="btn btn-info" (click)="showDetails(episode)">Details</button></td>
       </tr>
       </tbody>
   </table>
