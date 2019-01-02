@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EpisodeService } from '../service/episode.service';
 import { Episode } from '../model/episode';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Theme } from '../model/theme';
 
@@ -17,7 +17,8 @@ export class EpisodeDetailsComponent implements OnInit {
   episode: Episode;
   addForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
+              private router: Router, 
               private route: ActivatedRoute, 
               private episodeService: EpisodeService, 
               private location: Location) {
@@ -61,5 +62,16 @@ export class EpisodeDetailsComponent implements OnInit {
 
   stopEpisode(episode: Episode) {
     this.episodeService.stopEpisode(episode).subscribe(data => { this.getServiceDetails() });
+  }
+
+  isFinished(episode: Episode): boolean {
+    if(!episode){
+      return false;
+    }
+    return !episode.started && episode.themeList.filter(val => val.passed === true).length > 0;
+  }
+
+  export(episode: Episode){
+    this.router.navigate([`export/${episode.id}`])
   }
 }

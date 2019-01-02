@@ -5,6 +5,7 @@
         <th class="hidden">Id</th>
         <th>Name</th>
         <th>Themes count</th>
+        <th>Themes finished</th>
         <th></th>
       </tr>
       </thead>
@@ -13,6 +14,7 @@
         <td>{{ episode.id }}</td>
         <td>{{ episode.name }}</td>
         <td>{{ episode.themeList?.length }}</td>
+        <td>{{ (episode.themeList | filter: true).length }}</td>
         <td><button class="btn btn-info" (click)="showDetails(episode)">Details</button></td>
       </tr>
       </tbody>

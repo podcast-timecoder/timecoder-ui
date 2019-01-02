@@ -15,6 +15,8 @@ import { EpisodeDetailsComponent } from './episode-details/episode-details.compo
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { UiModule } from './ui/ui.module';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ExportComponent } from './export/export.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { UiModule } from './ui/ui.module';
     AddUserComponent,
     EpisodeListComponent,
     AddEpisodeComponent,
-    EpisodeDetailsComponent
+    EpisodeDetailsComponent,
+    FilterPipe,
+    ExportComponent
   ],
   imports: [
     BrowserModule,

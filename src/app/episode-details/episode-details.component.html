@@ -16,10 +16,8 @@
     <div class="col-8">
       <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-2">
-          <!-- <label for="themeTitle">Add theme</label> -->
           <input formControlName="title" placeholder="Add theme" name="title" class="form-control" id="themeTitle">
         </div>
-        <!-- <button type="submit" class="btn-sm btn-success mb-2">Add theme</button> -->
       </form>
     </div>
   </div>
@@ -52,4 +50,9 @@
             </table>
         </div>
       </div>
+</div>
+<div class="row mb-3">
+    <div class="col">
+      <button type="button" class="btn btn-primary btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">Export this episode</button>
+    </div>
 </div>

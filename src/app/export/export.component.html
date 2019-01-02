@@ -1,0 +1,6 @@
+<div *ngIf="episode" class="container">
+  {{ episode.name }}
+  <div *ngFor="let theme of episode?.themeList">
+    <div>- {{ theme.title }} ({{ theme.timecode }})</div>
+  </div>
+</div>  
