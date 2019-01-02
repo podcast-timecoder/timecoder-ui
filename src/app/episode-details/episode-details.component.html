@@ -1,5 +1,15 @@
 <div *ngIf="episode" class="container">
-  <div class="row episode-header">
+  <div class="row">
+        <div class="col">
+          Current: {{ now | date:'hh:mm:ss EEEE dd LLL' }}
+        </div>
+  </div>
+  <div class="row mb-2">  
+        <div class="col">
+          Started: {{ episode.startTime | date:'hh:mm:ss EEEE dd LLL'}}
+        </div>  
+  </div>
+  <div class="row mb-2">
     <div class="col-4">
       <h2>{{episode.name}}</h2>
     </div>
@@ -13,8 +23,8 @@
       </form>
     </div>
   </div>
-  <div class="row start-ep-block">
-    <button type="button" class="btn btn-warning btn-lg btn-block" [disabled]='episode.isStarted' (click)="startEpisode(episode)">Start episode</button>
+  <div class="row mb-3">
+    <button type="button" class="btn btn-warning btn-lg btn-block" [disabled]='episode.started' (click)="startEpisode(episode)">Start episode</button>
   </div>
   <div class="row">
         <div class="table-responsive">
@@ -29,7 +39,7 @@
                 </thead>
                   <tbody>
                     <tr *ngFor="let theme of episode?.themeList">
-                      <td>- {{ theme.title }}</td>
+                      <td>{{ theme.title }}</td>
                       <td>{{ theme.timecode }}</td>
                       <td><button class="btn btn-dark item" (click)="track(episode, theme)">Track</button></td>
                     </tr>

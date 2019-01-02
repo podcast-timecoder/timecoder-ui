@@ -13,13 +13,18 @@ import { Theme } from '../model/theme';
 })
 export class EpisodeDetailsComponent implements OnInit {
 
+  public now: Date = new Date();
   episode: Episode;
   addForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, 
               private route: ActivatedRoute, 
               private episodeService: EpisodeService, 
-              private location: Location) { }
+              private location: Location) {
+                setInterval(() => {
+                  this.now = new Date();
+                }, 1);
+               }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -50,7 +55,7 @@ export class EpisodeDetailsComponent implements OnInit {
      this.episodeService.updateTimestamp(episode.id, theme).subscribe(data => { this.getServiceDetails()});
   }
 
-  startEpisode(episode: Episode){
-    this.episodeService.updateTimestamp(episode.id, episode.themeList[0]).subscribe(data => {});
+  startEpisode(episode: Episode) {
+    this.episodeService.startEpisode(episode).subscribe(data => { this.getServiceDetails() });
   }
 }

@@ -37,6 +37,6 @@ export class EpisodeService {
   }
 
   startEpisode(episode: Episode): any {
-    return this.apiClient.post(`${this.baseUrl}/${episode.id}/start}`, {})
+    return this.apiClient.post(`${this.baseUrl}/${episode.id}/start`, {})
   }
 }
