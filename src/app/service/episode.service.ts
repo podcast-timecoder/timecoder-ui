@@ -8,7 +8,6 @@ import { Theme } from '../model/theme';
   providedIn: 'root'
 })
 export class EpisodeService {
-  
   baseUrl: string = 'http://localhost:8080/episodes';
   themeBaseUrl = 'http://localhost:8080/theme';
 
@@ -38,5 +37,9 @@ export class EpisodeService {
 
   startEpisode(episode: Episode): any {
     return this.apiClient.post(`${this.baseUrl}/${episode.id}/start`, {})
+  }
+
+  stopEpisode(episode: Episode): any {
+    return this.apiClient.post(`${this.baseUrl}/${episode.id}/stop`, {})
   }
 }

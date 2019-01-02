@@ -24,7 +24,12 @@
     </div>
   </div>
   <div class="row mb-3">
-    <button type="button" class="btn btn-warning btn-lg btn-block" [disabled]='episode.started' (click)="startEpisode(episode)">Start episode</button>
+    <div class="col-6">
+      <button type="button" class="btn btn-warning btn-lg btn-block" [disabled]='episode.started' (click)="startEpisode(episode)">Start episode</button>
+    </div>
+    <div class="col-6">
+      <button type="button" class="btn btn-danger btn-lg btn-block" [disabled]='!episode.started' (click)="stopEpisode(episode)">Stop episode</button>
+    </div>  
   </div>
   <div class="row">
         <div class="table-responsive">
@@ -38,10 +43,10 @@
                   </tr>
                 </thead>
                   <tbody>
-                    <tr *ngFor="let theme of episode?.themeList">
+                    <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
                       <td>{{ theme.title }}</td>
                       <td>{{ theme.timecode }}</td>
-                      <td><button class="btn btn-dark item" (click)="track(episode, theme)">Track</button></td>
+                      <td><button class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
                     </tr>
                   </tbody>
             </table>

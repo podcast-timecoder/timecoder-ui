@@ -58,4 +58,8 @@ export class EpisodeDetailsComponent implements OnInit {
   startEpisode(episode: Episode) {
     this.episodeService.startEpisode(episode).subscribe(data => { this.getServiceDetails() });
   }
+
+  stopEpisode(episode: Episode) {
+    this.episodeService.stopEpisode(episode).subscribe(data => { this.getServiceDetails() });
+  }
 }
