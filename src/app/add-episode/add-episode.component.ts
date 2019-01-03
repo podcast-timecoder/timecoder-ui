@@ -23,6 +23,7 @@ export class AddEpisodeComponent implements OnInit {
   onSubmit() {
     this.episodeService.createEpisode(this.addForm.value)
       .subscribe(data => {
+        this.addForm.reset()
         this.router.navigate(['episode-list']);
       });
   }

@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EpisodeService {
+
   baseUrl: string = `${environment.apiUrl}/episodes`;
   themeBaseUrl = `${environment.apiUrl}/theme`;
 
@@ -43,5 +44,9 @@ export class EpisodeService {
 
   stopEpisode(episode: Episode): any {
     return this.apiClient.post(`${this.baseUrl}/${episode.id}/stop`, {})
+  }
+
+  getAllThemesWithoutEpisode(): Observable<Theme[]> {
+    return this.apiClient.get<Theme[]>(`${this.themeBaseUrl}?episode=empty`)
   }
 }

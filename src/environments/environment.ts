@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://timecoder-api:8086"
+  apiUrl: "http://localhost:8080"
 };
 
 /*

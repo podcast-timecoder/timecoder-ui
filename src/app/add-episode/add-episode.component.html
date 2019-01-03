@@ -1,9 +1,9 @@
-<div class="col-md-6">
-  <h2 class="text-center">Add new episode</h2>
+<app-control-panel></app-control-panel>
+<div class="col">
   <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
   
     <div class="form-group">
-      <label for="episodeName">Name:</label>
+      <!-- <label for="episodeName">Name:</label> -->
       <input formControlName="name" placeholder="name" name="name" class="form-control" id="episodeName">
     </div>
 

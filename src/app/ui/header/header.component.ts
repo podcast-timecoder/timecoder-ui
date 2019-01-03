@@ -12,12 +12,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  addEpisode(): void {
-    this.router.navigate(['add-episode']);
-  };
-
-  goHome(): void {
-    this.router.navigate(['episode-list']);
-  }
 }

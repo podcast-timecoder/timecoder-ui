@@ -17,6 +17,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { UiModule } from './ui/ui.module';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ExportComponent } from './export/export.component';
+import { ProposeThemeComponent } from './propose-theme/propose-theme.component';
+import { ControlPanelComponent } from './ui/control-panel/control-panel.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { ExportComponent } from './export/export.component';
     AddEpisodeComponent,
     EpisodeDetailsComponent,
     FilterPipe,
-    ExportComponent
+    ExportComponent,
+    ProposeThemeComponent,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule,
