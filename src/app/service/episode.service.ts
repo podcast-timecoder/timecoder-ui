@@ -3,13 +3,15 @@ import { of, Observable } from 'rxjs';
 import { Episode } from '../model/episode';
 import { HttpClient } from '@angular/common/http';
 import { Theme } from '../model/theme';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EpisodeService {
-  baseUrl: string = 'http://localhost:8080/episodes';
-  themeBaseUrl = 'http://localhost:8080/theme';
+  baseUrl: string = `${environment.apiUrl}/episodes`;
+  themeBaseUrl = `${environment.apiUrl}/theme`;
 
   getAllEpisodes(): Observable<Episode[]> {
     return this.apiClient.get<Episode[]>(this.baseUrl)
