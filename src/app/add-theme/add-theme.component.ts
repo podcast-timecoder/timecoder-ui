@@ -6,8 +6,8 @@ import { Theme } from '../model/theme';
 
 @Component({
   selector: 'app-propose-theme',
-  templateUrl: './propose-theme.component.html',
-  styleUrls: ['./propose-theme.component.css']
+  templateUrl: './add-theme.component.html',
+  styleUrls: ['./add-theme.component.css']
 })
 export class ProposeThemeComponent implements OnInit {
 

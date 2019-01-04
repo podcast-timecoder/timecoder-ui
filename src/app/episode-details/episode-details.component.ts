@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EpisodeService } from '../service/episode.service';
 import { Episode } from '../model/episode';
 import { Location } from '@angular/common';
@@ -14,7 +14,7 @@ import { Theme } from '../model/theme';
 export class EpisodeDetailsComponent implements OnInit {
 
   public now: Date = new Date();
-  episode: Episode;
+  @Input() episode: Episode;
   addForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -35,8 +35,8 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   getServiceDetails(){
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.episodeService.getServiceById(id)
+    // const id = +this.route.snapshot.paramMap.get('id');
+    this.episodeService.getServiceById(this.episode.id)
       .subscribe(data => this.episode = data);
   }
 
@@ -45,8 +45,8 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.episodeService.addTheme(id, this.addForm.value)
+    // const id = +this.route.snapshot.paramMap.get('id');
+    this.episodeService.addTheme(this.episode.id, this.addForm.value)
       .subscribe(data => { this.getServiceDetails()
       });
     this.addForm.reset();
