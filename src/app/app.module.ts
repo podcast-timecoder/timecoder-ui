@@ -19,6 +19,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { ExportComponent } from './export/export.component';
 import { ProposeThemeComponent } from './propose-theme/propose-theme.component';
 import { ControlPanelComponent } from './ui/control-panel/control-panel.component';
+import { AuthGuardService } from './service/auth-guard.service';
 
 
 @NgModule({
