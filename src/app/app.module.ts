@@ -14,7 +14,10 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { UiModule } from './ui/ui.module';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ExportComponent } from './export/export.component';
+
 import { ProposeThemeComponent } from './add-theme/add-theme.component';
+
+import { AuthGuardService } from './service/auth-guard.service';
 
 
 @NgModule({
