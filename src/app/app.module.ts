@@ -18,6 +18,7 @@ import { ExportComponent } from './export/export.component';
 import { ProposeThemeComponent } from './add-theme/add-theme.component';
 
 import { AuthGuardService } from './service/auth-guard.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AuthGuardService } from './service/auth-guard.service';
     EpisodeDetailsComponent,
     FilterPipe,
     ExportComponent,
-    ProposeThemeComponent
+    ProposeThemeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
