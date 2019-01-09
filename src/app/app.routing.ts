@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: "add-theme", component: ProposeThemeComponent },
   { path: 'list', component: EpisodeListComponent, canActivate: [AuthGuard] },
   { path: 'link-themes/:id', component: LinkThemesComponent, canActivate: [AuthGuard] },
+  { path: 'episode-details/:id', component: EpisodeDetailsComponent, canActivate: [AuthGuard] },
   { path: '**', component: LoginComponent }
 ]
 

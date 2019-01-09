@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EpisodeService } from '../service/episode.service';
 import { Theme } from '../model/theme';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-propose-theme',
@@ -14,7 +15,10 @@ export class ProposeThemeComponent implements OnInit {
   addForm: FormGroup;
   themes: Theme[];
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private episodeService: EpisodeService) { }
+  constructor(private formBuilder: FormBuilder, 
+              private router: Router, 
+              private episodeService: EpisodeService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -24,7 +28,7 @@ export class ProposeThemeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.episodeService.addTheme(null,this.addForm.value)
+    this.episodeService.addFreeTheme(this.addForm.value)
       .subscribe(data => { 
         this.addForm.reset() 
         this.getAllThemesWithoutEpisode();
@@ -35,4 +39,7 @@ export class ProposeThemeComponent implements OnInit {
     this.episodeService.getAllThemesWithoutEpisode().subscribe(data => this.themes = data);
   }
 
+  isAuthorized(){
+    return this.authService.isAuthenticated()
+  }
 }

@@ -19,6 +19,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["login"]);
   }
 
+  goHome(){
+    this.router.navigate(["list"]);
+  }
+
   isLogged(): boolean {
     return this.authSerice.isAuthenticated()
   }

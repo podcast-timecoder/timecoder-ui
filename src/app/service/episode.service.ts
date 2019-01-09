@@ -32,6 +32,10 @@ export class EpisodeService {
     return this.apiClient.post<Theme>(`${this.baseUrl}/${episodeId}/theme`, value)
   }
 
+  addFreeTheme(value: Theme) {
+    return this.apiClient.post<Theme>(`${this.themeBaseUrl}`, value)
+  }
+
   updateTimestamp(episodeId: Number, theme: Theme): any {
     return this.apiClient.post(`${this.baseUrl}/${episodeId}/theme/${theme.id}/timestamp`, null)
   }

@@ -1,7 +1,9 @@
 <div *ngIf="episode">
   <div class="row">
-      <button type="button" class="btn btn-block btn-dark" (click)="linkThemes(episode)">Link themes</button>
-  </div>
+      <div class="col mb-2">
+        <button type="button" class="btn btn-block btn-outline-info" (click)="linkThemes(episode)">Link themes</button>
+      </div>  
+    </div>
   <div class="row">
         <div class="col">
           Current: {{ now | date:'hh:mm:ss EEEE dd LLL' }}
@@ -57,7 +59,7 @@
   </div>
   <div class="row mb-5">
       <div class="col-12 mb-5">
-            <button type="button" class="btn btn-light btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">Export this episode</button>
+            <button type="button" class="btn btn-info btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">Export this episode</button>
       </div>
   </div>
 </div>

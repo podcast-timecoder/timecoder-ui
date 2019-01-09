@@ -2,12 +2,12 @@
     <a class="navbar-brand" href="/list">Timecoder</a>
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
-         
+          <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
       </div>
     </div>
     <div class="navbar-expand ml-auto navbar-nav">
       <div class="navbar-nav">
-        <button *ngIf="isLogged()" type="button" class="btn btn-light mx-2" (click)="logout()">Logout</button>
+        <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="logout()">Logout</button>
         <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
           <i class="fa fa-github"></i>
         </a>

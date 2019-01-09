@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EpisodeService } from '../service/episode.service';
 import { Episode } from '../model/episode';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-episode-list',
@@ -15,7 +16,9 @@ export class EpisodeListComponent implements OnInit {
   selectedEpisode: Episode;
   addForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private episodeService: EpisodeService) { }
+  constructor(private formBuilder: FormBuilder, 
+              private router: Router, 
+              private episodeService: EpisodeService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -32,7 +35,9 @@ export class EpisodeListComponent implements OnInit {
 
   onSelect(episode: Episode): void {
     this.selectedEpisode = episode;
-    this.ngOnInit();
+    this.episodeService.getAllEpisodes()
+      .subscribe(data => this.episodes = data);
+    this.showDetails(episode);  
   }
 
   onSubmit() {

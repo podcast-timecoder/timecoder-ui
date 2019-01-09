@@ -4,6 +4,7 @@ import { EpisodeService } from '../service/episode.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Theme } from '../model/theme';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-link-themes',
@@ -20,7 +21,7 @@ export class LinkThemesComponent implements OnInit {
   constructor(private episodeService: EpisodeService, 
               private route: ActivatedRoute, 
               private formBuilder: FormBuilder,
-              private router: Router) { }
+              private location: Location) { }
 
   ngOnInit() {
     this.getEpisodeDetails();
@@ -55,7 +56,7 @@ export class LinkThemesComponent implements OnInit {
 
     this.episodeService.linkThemesToEpisode(this.episode, selectedThemeIds).subscribe();
 
-    this.router.navigate(["list"])
+    this.location.back();
   }
 
 }

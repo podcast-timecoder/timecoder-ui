@@ -35,7 +35,8 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   getServiceDetails(){
-    this.episodeService.getEpisodeById(this.episode.id)
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.episodeService.getEpisodeById(id)
       .subscribe(data => this.episode = data);
   }
 
