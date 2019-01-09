@@ -1,14 +1,16 @@
 <div *ngIf="episode">
   <h2>{{ episode.name }}</h2>
-    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-      <div *ngFor="let theme of themeList">
-      <div class="form-check">
-          <input class="form-check-input" type="checkbox" formControlName="name" value="{{ theme.id }}" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-              {{ theme.title }}
-          </label>
-      </div>
-      </div>
-      <button type="submit">Save</button>
-    </form> 
-  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <ul class="list-group" formArrayName="themeList" *ngFor="let theme of form.controls.themeList.controls; let i = index">
+        <li class="list-group-item mb-1">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="defaultCheck1" [formControlName]="i">
+            <label class="form-check-label" for="defaultCheck1">
+                {{themeList[i].title}}
+            </label>
+        </div>
+        </li>
+      </ul>  
+      <button class="btn btn-primary">Link</button>
+  </form>
+</div>

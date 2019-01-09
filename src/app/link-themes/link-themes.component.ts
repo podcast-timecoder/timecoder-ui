@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Episode } from '../model/episode';
 import { EpisodeService } from '../service/episode.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Theme } from '../model/theme';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-link-themes',
@@ -12,18 +12,29 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LinkThemesComponent implements OnInit {
 
-  addForm: FormGroup;
+  form: FormGroup;
   episode: Episode;
   themeList: Theme[];
 
-  constructor(private episodeService: EpisodeService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+
+  constructor(private episodeService: EpisodeService, 
+              private route: ActivatedRoute, 
+              private formBuilder: FormBuilder,
+              private router: Router) { }
 
   ngOnInit() {
-    this.addForm = this.formBuilder.group({
-      name: ['', Validators.required]
-    });
-    this.getEpisodeDetails()
-    this.getAvailableThemes()  
+    this.getEpisodeDetails();
+     
+    this.episodeService.getAllThemesWithoutEpisode().subscribe(data => { 
+      this.themeList = data 
+      
+      const controls = this.themeList.map(c => new FormControl(false));
+      this.form = this.formBuilder.group({
+        themeList: new FormArray(controls)
+      });
+    })
+
+    
   }
 
   getEpisodeDetails() {
@@ -35,8 +46,16 @@ export class LinkThemesComponent implements OnInit {
     this.episodeService.getAllThemesWithoutEpisode().subscribe(data => this.themeList = data)
   }
 
-  onSubmit(){
-    console.log(this.addForm.value)
+  submit(){
+    const selectedThemeIds = this.form.value.themeList
+      .map((v, i) => v ? this.themeList[i].id : null)
+      .filter(v => v !== null);
+
+    console.log(selectedThemeIds);
+
+    this.episodeService.linkThemesToEpisode(this.episode, selectedThemeIds).subscribe();
+
+    this.router.navigate(["list"])
   }
 
 }

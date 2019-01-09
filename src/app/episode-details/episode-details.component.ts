@@ -35,7 +35,6 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   getServiceDetails(){
-    // const id = +this.route.snapshot.paramMap.get('id');
     this.episodeService.getEpisodeById(this.episode.id)
       .subscribe(data => this.episode = data);
   }
@@ -45,7 +44,6 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    // const id = +this.route.snapshot.paramMap.get('id');
     this.episodeService.addTheme(this.episode.id, this.addForm.value)
       .subscribe(data => { this.getServiceDetails()
       });
