@@ -25,7 +25,7 @@ export class EpisodeService {
      return this.apiClient.post(this.baseUrl, value)
   }
 
-  getServiceById(id: Number): Observable<Episode> {
+  getEpisodeById(id: Number): Observable<Episode> {
      return this.apiClient.get<Episode>(this.baseUrl+"/"+id)
   }
 

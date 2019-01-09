@@ -17,7 +17,7 @@ export class ExportComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.episodeService.getServiceById(id).subscribe(data => this.episode = data);
+    this.episodeService.getEpisodeById(id).subscribe(data => this.episode = data);
   }
 
 }

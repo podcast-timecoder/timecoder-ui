@@ -36,7 +36,7 @@ export class EpisodeDetailsComponent implements OnInit {
 
   getServiceDetails(){
     // const id = +this.route.snapshot.paramMap.get('id');
-    this.episodeService.getServiceById(this.episode.id)
+    this.episodeService.getEpisodeById(this.episode.id)
       .subscribe(data => this.episode = data);
   }
 
@@ -73,5 +73,9 @@ export class EpisodeDetailsComponent implements OnInit {
 
   export(episode: Episode){
     this.router.navigate([`export/${episode.id}`])
+  }
+
+  linkThemes(episode: Episode){
+    this.router.navigate([`link-themes/${episode.id}`])
   }
 }

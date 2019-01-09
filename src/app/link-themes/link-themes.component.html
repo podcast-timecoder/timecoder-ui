@@ -1,0 +1,14 @@
+<div *ngIf="episode">
+  <h2>{{ episode.name }}</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let theme of themeList">
+      <div class="form-check">
+          <input class="form-check-input" type="checkbox" formControlName="name" value="{{ theme.id }}" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+              {{ theme.title }}
+          </label>
+      </div>
+      </div>
+      <button type="submit">Save</button>
+    </form> 
+  </div>

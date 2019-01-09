@@ -1,5 +1,8 @@
 <div *ngIf="episode">
   <div class="row">
+      <button type="button" class="btn btn-block btn-dark" (click)="linkThemes(episode)">Link themes</button>
+  </div>
+  <div class="row">
         <div class="col">
           Current: {{ now | date:'hh:mm:ss EEEE dd LLL' }}
         </div>
