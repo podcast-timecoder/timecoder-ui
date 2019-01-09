@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EpisodeService } from '../service/episode.service';
 import { Episode } from '../model/episode';
 import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Theme } from '../model/theme';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-episode-details',
@@ -14,7 +15,7 @@ import { Theme } from '../model/theme';
 export class EpisodeDetailsComponent implements OnInit {
 
   public now: Date = new Date();
-  @Input() episode: Episode;
+  episode: Episode;
   addForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -31,10 +32,10 @@ export class EpisodeDetailsComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       title: ['', Validators.required]
     });
-    this.getServiceDetails();
+    this.getEpisodeDetails();
   }
 
-  getServiceDetails(){
+  getEpisodeDetails(){
     const id = +this.route.snapshot.paramMap.get('id');
     this.episodeService.getEpisodeById(id)
       .subscribe(data => this.episode = data);
@@ -46,21 +47,21 @@ export class EpisodeDetailsComponent implements OnInit {
 
   onSubmit() {
     this.episodeService.addTheme(this.episode.id, this.addForm.value)
-      .subscribe(data => { this.getServiceDetails()
-      });
+      .subscribe(data => { this.getEpisodeDetails()
+    });
     this.addForm.reset();
   }
 
   track(episode:  Episode, theme: Theme) {
-     this.episodeService.updateTimestamp(episode.id, theme).subscribe(data => { this.getServiceDetails()});
+     this.episodeService.updateTimestamp(episode.id, theme).subscribe(data => { this.getEpisodeDetails()});
   }
 
   startEpisode(episode: Episode) {
-    this.episodeService.startEpisode(episode).subscribe(data => { this.getServiceDetails() });
+    this.episodeService.startEpisode(episode).subscribe(data => { this.getEpisodeDetails() });
   }
 
   stopEpisode(episode: Episode) {
-    this.episodeService.stopEpisode(episode).subscribe(data => { this.getServiceDetails() });
+    this.episodeService.stopEpisode(episode).subscribe(data => { this.getEpisodeDetails() });
   }
 
   isFinished(episode: Episode): boolean {
@@ -75,6 +76,6 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   linkThemes(episode: Episode){
-    this.router.navigate([`link-themes/${episode.id}`])
+    this.router.navigate([`link-themes/${episode.id}`], { queryParams: { returnUrl: this.router.url }})
   }
 }

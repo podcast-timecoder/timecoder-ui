@@ -16,12 +16,12 @@ export class LinkThemesComponent implements OnInit {
   form: FormGroup;
   episode: Episode;
   themeList: Theme[];
-
+  returnUrl: string;
 
   constructor(private episodeService: EpisodeService, 
               private route: ActivatedRoute, 
               private formBuilder: FormBuilder,
-              private location: Location) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.getEpisodeDetails();
@@ -35,6 +35,8 @@ export class LinkThemesComponent implements OnInit {
       });
     })
 
+    this.route.queryParams
+      .subscribe(params => this.returnUrl = params['returnUrl'] || '/list');
     
   }
 
@@ -54,9 +56,9 @@ export class LinkThemesComponent implements OnInit {
 
     console.log(selectedThemeIds);
 
-    this.episodeService.linkThemesToEpisode(this.episode, selectedThemeIds).subscribe();
+    this.episodeService.linkThemesToEpisode(this.episode, selectedThemeIds).subscribe(() => {this.router.navigate([this.returnUrl]);});
 
-    this.location.back();
+    
   }
 
 }
