@@ -2,7 +2,13 @@
   <div class="col-12 mb-2">
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
       <div class="form-group mb-2">
-        <input formControlName="title" placeholder="Add theme" name="title" class="form-control" id="themeTitle">
+        <input type="text" formControlName="title" placeholder="Add theme" name="title" class="form-control" id="themeTitle" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+        <div class="invalid-feedback">
+            Please choose a username.
+          </div>
       </div>
     </form>
   </div>
@@ -17,7 +23,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let theme of themes">
-          <td>{{ theme.title }}</td>
+          <td [innerHTML]="theme.title | linkify"></td>
           <td>{{ theme.createdAt | date:'hh:mm:ss EEEE dd LLL'}}</td>
         </tr>
         </tbody>

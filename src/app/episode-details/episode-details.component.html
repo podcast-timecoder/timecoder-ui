@@ -48,7 +48,7 @@
                 </thead>
                   <tbody>
                     <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
-                      <td>{{ theme.title }}</td>
+                      <td [innerHTML]="theme.title | linkify"></td>
                       <td>{{ theme.timecode }}</td>
                       <td><button class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
                     </tr>

@@ -20,6 +20,7 @@ import { ProposeThemeComponent } from './add-theme/add-theme.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { LinkThemesComponent } from './link-themes/link-themes.component';
+import { LinkifyPipe } from './pipes/linkify.pipe';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { LinkThemesComponent } from './link-themes/link-themes.component';
     EpisodeListComponent,
     EpisodeDetailsComponent,
     FilterPipe,
+    LinkifyPipe,
     ExportComponent,
     ProposeThemeComponent,
     LoginComponent,

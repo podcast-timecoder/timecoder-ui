@@ -5,8 +5,8 @@
         <li class="list-group-item mb-1">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="defaultCheck1" [formControlName]="i">
-            <label class="form-check-label" for="defaultCheck1">
-                {{themeList[i].title}}
+            <label class="form-check-label" for="defaultCheck1" [innerHTML]="themeList[i].title | linkify">
+                
             </label>
         </div>
         </li>
