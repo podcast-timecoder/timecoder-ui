@@ -30,8 +30,7 @@ export class EpisodeService {
   }
 
   addTheme(episodeId: any, value: Theme): Observable<Theme> {
-    value.episodeId = episodeId
-    return this.apiClient.post<Theme>(this.themeBaseUrl, value)
+    return this.apiClient.post<Theme>(`${this.baseUrl}/${episodeId}/theme`, value)
   }
 
   updateTimestamp(episodeId: Number, theme: Theme): any {
