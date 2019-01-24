@@ -82,7 +82,7 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   connect(): void {
-    let source = new EventSource(`${ environment.apiUrl }/notifications`);
+    let source = new EventSource(`${ environment.apiUrl }/stream`);
     source.addEventListener('message', message => {
       this.getEpisodeDetails();
     });
