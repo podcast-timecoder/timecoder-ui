@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Theme } from '../model/theme';
 import { filter } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-episode-details',
@@ -33,6 +34,7 @@ export class EpisodeDetailsComponent implements OnInit {
       title: ['', Validators.required]
     });
     this.getEpisodeDetails();
+    this.connect();
   }
 
   getEpisodeDetails(){
@@ -78,4 +80,12 @@ export class EpisodeDetailsComponent implements OnInit {
   linkThemes(episode: Episode){
     this.router.navigate([`link-themes/${episode.id}`], { queryParams: { returnUrl: this.router.url }})
   }
+
+  connect(): void {
+    let source = new EventSource(`${ environment.apiUrl }/notifications`);
+    source.addEventListener('message', message => {
+      this.getEpisodeDetails();
+    });
+ }
+
 }

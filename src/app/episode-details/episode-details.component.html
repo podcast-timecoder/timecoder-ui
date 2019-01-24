@@ -41,15 +41,15 @@
               <caption>Theme list</caption>
                 <thead class="thead-light">
                   <tr>
-                    <th class="hidden">Title</th>
                     <th>Timecode</th>
+                    <th class="hidden">Title</th>
                     <th></th>
                   </tr>
                 </thead>
                   <tbody>
                     <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
-                      <td [innerHTML]="theme.title | linkify"></td>
                       <td>{{ theme.timecode }}</td>
+                      <td [innerHTML]="theme.title | linkify"></td>
                       <td><button class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
                     </tr>
                   </tbody>
