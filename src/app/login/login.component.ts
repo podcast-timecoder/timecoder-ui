@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -43,6 +45,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.f.usernameOrEmail.value, this.f.password.value).subscribe(data => {
       localStorage.setItem('access_token', data.accessToken);
+      
+      this.userService.getCurrentUser().subscribe(data => {
+        localStorage.setItem('user', JSON.stringify(data));
+      })
+
       this.router.navigate(["list"]);
     } , error => {
       this.loading = false;
