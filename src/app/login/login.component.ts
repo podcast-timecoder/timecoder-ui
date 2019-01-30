@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  error: string;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      usernameOrEmail: ['', Validators.required],
       password: ['', Validators.required]
      });
   }
@@ -39,9 +40,13 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    if(this.f.username.value == "dev@gmail.com" && this.f.password.value == "12345"){
+
+    this.authService.login(this.f.usernameOrEmail.value, this.f.password.value).subscribe(data => {
+      localStorage.setItem('access_token', data.accessToken);
       this.router.navigate(["list"]);
-      localStorage.setItem("user", "dev@gmail.com");
-    }
+    } , error => {
+      this.loading = false;
+      this.error = error
+    })
   }
 }

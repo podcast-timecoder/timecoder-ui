@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { UserService } from './service/user.service';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,11 +16,10 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { ExportComponent } from './export/export.component';
 
 import { ProposeThemeComponent } from './add-theme/add-theme.component';
-
-import { AuthGuardService } from './service/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { LinkThemesComponent } from './link-themes/link-themes.component';
 import { LinkifyPipe } from './pipes/linkify.pipe';
+import { JwtInterceptor } from './jwt.interceptor';
 
 
 @NgModule({
@@ -49,7 +48,7 @@ import { LinkifyPipe } from './pipes/linkify.pipe';
     MatListModule,
     UiModule
   ],
-  providers: [UserService],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
