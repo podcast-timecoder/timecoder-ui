@@ -8,6 +8,12 @@
             <div class="form-row md-3">
               <div class="col-8">
                 <input type="text" formControlName="name" placeholder="Name" name="name" class="form-control" id="episodeName">
+                <div *ngIf="added" class="valid-feedback">
+                  Your record sucesfully added! Thank you!
+                </div>
+                <div *ngIf="error" class="invalid-feedback">
+                    {{ error.error.message }}
+                </div>
               </div>
               <div class="col-4">
                 <button class="btn btn-block btn-outline-success">Add episode</button>  

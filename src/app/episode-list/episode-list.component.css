@@ -21,3 +21,15 @@ div.table {
    box-shadow: 0 0 5px rgba(0,0,0,0.5);
    border-radius: 10px;
 }
+
+.valid-feedback {
+   color: green;
+   display: block;
+   font-size: 100%;
+}
+
+.invalid-feedback {
+   color: red;
+   display: block;
+   font-size: 100%;
+}

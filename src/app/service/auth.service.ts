@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return localStorage.getItem('access_token') !== null;
+    return this.getStoredToken() !== null && !this.isTokenExpired();
   }
 
   getStoredToken() {

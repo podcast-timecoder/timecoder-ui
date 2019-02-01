@@ -1,0 +1,11 @@
+.valid-feedback {
+    color: green;
+    display: block;
+    font-size: 100%;
+}
+
+.invalid-feedback {
+    color: red;
+    display: block;
+    font-size: 100%;
+}

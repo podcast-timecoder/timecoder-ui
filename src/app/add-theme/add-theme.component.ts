@@ -14,6 +14,8 @@ export class ProposeThemeComponent implements OnInit {
 
   addForm: FormGroup;
   themes: Theme[];
+  added: boolean
+  error: Object
 
   constructor(private formBuilder: FormBuilder, 
               private router: Router, 
@@ -32,6 +34,11 @@ export class ProposeThemeComponent implements OnInit {
       .subscribe(data => { 
         this.addForm.reset() 
         this.getAllThemesWithoutEpisode();
+        this.added = true;
+      },
+      error => {
+        console.error(error)
+        this.error = error;
       });
   }
 

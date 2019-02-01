@@ -18,6 +18,8 @@ export class EpisodeListComponent implements OnInit {
   selectedEpisode: Episode;
   addForm: FormGroup;
   currentUser: User
+  added: boolean
+  error: Object
 
   constructor(private formBuilder: FormBuilder, 
               private router: Router, 
@@ -49,7 +51,11 @@ export class EpisodeListComponent implements OnInit {
     this.episodeService.createEpisode(this.addForm.value)
       .subscribe(data => {
         this.addForm.reset();
-        this.getAllEpisodes(); 
+        this.getAllEpisodes();
+        this.added = true; 
+      }, 
+      error => {
+        this.error = error
       });
   }
 
