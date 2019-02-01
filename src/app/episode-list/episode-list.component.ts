@@ -4,6 +4,8 @@ import { EpisodeService } from '../service/episode.service';
 import { Episode } from '../model/episode';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { User } from '../model/user';
+import { LoggedUserService } from '../service/logged-user.service';
 
 @Component({
   selector: 'app-episode-list',
@@ -15,15 +17,19 @@ export class EpisodeListComponent implements OnInit {
   episodes: Episode[];
   selectedEpisode: Episode;
   addForm: FormGroup;
+  currentUser: User
 
   constructor(private formBuilder: FormBuilder, 
               private router: Router, 
-              private episodeService: EpisodeService) { }
+              private episodeService: EpisodeService,
+              private sessionUserService: LoggedUserService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       name: ['', Validators.required]
     });
+
+    this.currentUser = this.sessionUserService.getSessionUser();
 
     this.episodeService.getAllEpisodes()
       .subscribe(data => this.episodes = data)

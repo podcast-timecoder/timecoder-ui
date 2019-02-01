@@ -50,10 +50,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.f.usernameOrEmail.value, this.f.password.value).subscribe(data => {
       localStorage.setItem('access_token', data.accessToken);
 
-      this.userService.getCurrentUser().subscribe(user => {
-        localStorage.setItem('user', JSON.stringify(user));
-      });
-
       this.router.navigate(['list']);
     }, (error: HttpErrorResponse) => {
       this.loading = false;

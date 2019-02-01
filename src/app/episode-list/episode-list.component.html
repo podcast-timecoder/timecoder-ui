@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-3">
       <button type="button" class="btn btn-block btn-dark mb-3" (click)="addTheme()">Add theme</button>
-      <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="add-episode-form">
+      <form *ngIf="currentUser.isAdmin" [formGroup]="addForm" (ngSubmit)="onSubmit()" class="add-episode-form">
           <div class="form-row md-3">
             <div class="col-8">
               <input type="text" formControlName="name" placeholder="Name" name="name" class="form-control" id="episodeName">

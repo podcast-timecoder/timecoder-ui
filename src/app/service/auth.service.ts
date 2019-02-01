@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 
-  baseUrl = `${environment.apiUrl}/auth/signin`;
+  baseUrl = `${environment.apiUrl}/gateway/auth/signin`;
 
   constructor(private httpClient: HttpClient,
               private router: Router) {
@@ -22,7 +22,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token');
-    localStorage.removeItem('user');
   }
 
   public isAuthenticated(): boolean {
