@@ -4,7 +4,7 @@
   </div> 
 </div>
 <div class="row">
-  <div class="col-3">
+  <div class="col-4">
       <button type="button" class="btn btn-block btn-dark mb-3" (click)="addTheme()">Add theme</button>
       <form *ngIf="currentUser.isAdmin" [formGroup]="addForm" (ngSubmit)="onSubmit()" class="add-episode-form">
           <div class="form-row md-3">
@@ -24,7 +24,7 @@
           </li>
       </ul>  
   </div>
-  <div class="col-9" *ngIf="selectedEpisode" >
-   <router-outlet></router-outlet>
+  <div class="col-3">
+   <button *ngIf="currentUser.isAdmin" type="button" class="btn btn-block btn btn-warning mb-3" (click)="userManagement()">User management</button>
   </div>
 </div>

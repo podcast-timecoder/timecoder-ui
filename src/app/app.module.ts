@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { LinkThemesComponent } from './link-themes/link-themes.component';
 import { LinkifyPipe } from './pipes/linkify.pipe';
 import { JwtInterceptor } from './jwt.interceptor';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { JwtInterceptor } from './jwt.interceptor';
     ExportComponent,
     ProposeThemeComponent,
     LoginComponent,
-    LinkThemesComponent
+    LinkThemesComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 <div *ngIf="episode">
-  <div class="row">
+  <div *ngIf="currentUser.isAdmin" class="row">
       <div class="col mb-2">
         <button type="button" class="btn btn-block btn-outline-info" (click)="linkThemes(episode)">Link themes</button>
       </div>  
@@ -26,7 +26,7 @@
       </form>
     </div>
   </div>
-  <div class="row mb-3">
+  <div *ngIf="currentUser.isAdmin" class="row mb-3">
     <div class="col-6">
       <button type="button" class="btn btn-warning btn-block" [disabled]='episode.started' (click)="startEpisode(episode)">Start episode</button>
     </div>
@@ -50,14 +50,14 @@
                     <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
                       <td>{{ theme.timecode }}</td>
                       <td [innerHTML]="theme.title | linkify"></td>
-                      <td><button class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
+                      <td><button *ngIf="currentUser.isAdmin" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
                     </tr>
                   </tbody>
             </table>
         </div>
       </div>
   </div>
-  <div class="row mb-5">
+  <div *ngIf="currentUser.isAdmin" class="row mb-5">
       <div class="col-12 mb-5">
             <button type="button" class="btn btn-info btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">Export this episode</button>
       </div>

@@ -11,17 +11,11 @@ import { LoggedUserService } from 'src/app/service/logged-user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser: User;
-
   constructor(private router: Router, 
               private authSerice: AuthService,
               private sessionUserService: LoggedUserService) { }
 
-  ngOnInit() {
-    if(this.isLogged()){
-      this.currentUser = this.sessionUserService.getSessionUser();
-    }
-  }
+  ngOnInit() {}
 
   logout(){
     localStorage.clear();
@@ -34,5 +28,9 @@ export class HeaderComponent implements OnInit {
 
   isLogged(): boolean {
     return this.authSerice.isAuthenticated()
+  }
+
+  getCurrentUserName(){
+    return this.sessionUserService.getSessionUser().username
   }
 }

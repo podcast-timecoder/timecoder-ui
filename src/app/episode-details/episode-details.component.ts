@@ -7,6 +7,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Theme } from '../model/theme';
 import { filter } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { User } from '../model/user';
+import { LoggedUserService } from '../service/logged-user.service';
 
 @Component({
   selector: 'app-episode-details',
@@ -18,11 +20,13 @@ export class EpisodeDetailsComponent implements OnInit {
   public now: Date = new Date();
   episode: Episode;
   addForm: FormGroup;
+  currentUser: User;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router, 
               private route: ActivatedRoute, 
-              private episodeService: EpisodeService, 
+              private episodeService: EpisodeService,
+              private sessionUserService: LoggedUserService, 
               private location: Location) {
                 setInterval(() => {
                   this.now = new Date();
@@ -33,6 +37,7 @@ export class EpisodeDetailsComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       title: ['', Validators.required]
     });
+    this.currentUser = this.sessionUserService.getSessionUser();
     this.getEpisodeDetails();
     this.connect();
   }

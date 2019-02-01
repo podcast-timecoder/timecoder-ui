@@ -59,6 +59,10 @@ export class EpisodeListComponent implements OnInit {
     this.router.navigate(['add-theme']);
   }
 
+  userManagement(){
+    this.router.navigate(['user-management']);
+  }
+
   addEpisode() {
     this.router.navigate(['add-episode']);
   }
