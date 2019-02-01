@@ -6,6 +6,15 @@ div.table {
    margin-bottom: 20px;
 }
 
-.list-group-item:hover {
+.episode-name {
    cursor: pointer;
+   width: 85%;
+   display: flex;
+   padding-left: 10px;
+   padding-right: 10px;
+}
+
+.episode-name:hover {
+   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+   border-radius: 10px;
 }

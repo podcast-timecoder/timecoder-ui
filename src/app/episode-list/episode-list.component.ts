@@ -41,17 +41,15 @@ export class EpisodeListComponent implements OnInit {
 
   onSelect(episode: Episode): void {
     this.selectedEpisode = episode;
-    this.episodeService.getAllEpisodes()
-      .subscribe(data => this.episodes = data);
+    this.getAllEpisodes();
     this.showDetails(episode);  
   }
 
   onSubmit() {
     this.episodeService.createEpisode(this.addForm.value)
       .subscribe(data => {
-        this.addForm.reset()
-        this.episodeService.getAllEpisodes()
-        .subscribe(data => this.episodes = data)
+        this.addForm.reset();
+        this.getAllEpisodes(); 
       });
   }
 
@@ -65,5 +63,16 @@ export class EpisodeListComponent implements OnInit {
 
   addEpisode() {
     this.router.navigate(['add-episode']);
+  }
+
+  removeEpisode(episode: Episode){
+     this.episodeService.removeEpisode(episode.id).subscribe(data => {
+        this.getAllEpisodes();
+     });
+  }
+
+  getAllEpisodes(): void {
+    this.episodeService.getAllEpisodes()
+    .subscribe(data => this.episodes = data)
   }
 }
