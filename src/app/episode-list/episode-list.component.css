@@ -8,13 +8,16 @@ div.table {
 
 .episode-name {
    cursor: pointer;
-   width: 85%;
+   width: 100%;
    display: flex;
-   padding-left: 10px;
-   padding-right: 10px;
+   padding: 15px;
 }
 
-.episode-name:hover {
+.remove-icon {
+   padding: 15px;
+}
+
+.episode-name:hover, .remove-icon:hover {
    box-shadow: 0 0 5px rgba(0,0,0,0.5);
    border-radius: 10px;
 }

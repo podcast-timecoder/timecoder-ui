@@ -57,7 +57,7 @@ export class EpisodeService {
   }
 
   removeEpisode(id: Number): Observable<any> {
-    return this.apiClient.delete(`${this.baseUrl}/episode/${id}/delete`)
+    return this.apiClient.delete(`${this.baseUrl}/${id}/remove`)
   }
 
 }
