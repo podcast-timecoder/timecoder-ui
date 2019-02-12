@@ -11,11 +11,15 @@ import { LoggedUserService } from 'src/app/service/logged-user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, 
+  currentUser: User;
+
+  constructor(private router: Router,
               private authSerice: AuthService,
               private sessionUserService: LoggedUserService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUser = this.sessionUserService.getSessionUser();
+  }
 
   logout(){
     localStorage.clear();
@@ -24,6 +28,10 @@ export class HeaderComponent implements OnInit {
 
   goHome(){
     this.router.navigate(["list"]);
+  }
+
+  patronsList(){
+    this.router.navigate(["patrons-list"]);
   }
 
   isLogged(): boolean {

@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { LinkThemesComponent } from './link-themes/link-themes.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import {PatronsListComponent} from "./patrons-list/patrons-list.component";
 
 const routes: Routes = [
   { path: "add-user", component: AddUserComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'list', component: EpisodeListComponent, canActivate: [AuthGuard] },
   { path: 'link-themes/:id', component: LinkThemesComponent, canActivate: [AuthGuard] },
   { path: 'episode-details/:id', component: EpisodeDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'patrons-list', component: PatronsListComponent, canActivate: [AuthGuard] },
   { path: '**', component: LoginComponent }
 ]
 

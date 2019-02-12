@@ -22,6 +22,7 @@ import { LinkifyPipe } from './pipes/linkify.pipe';
 import { JwtInterceptor } from './jwt.interceptor';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { PatronsListComponent } from './patrons-list/patrons-list.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AddUserComponent } from './add-user/add-user.component';
     LoginComponent,
     LinkThemesComponent,
     UserManagementComponent,
-    AddUserComponent
+    AddUserComponent,
+    PatronsListComponent
   ],
   imports: [
     BrowserModule,
