@@ -1,0 +1,21 @@
+language: node
+
+services:
+  - docker
+
+script:
+  - docker build -t "$IMAGE_NAME:${TRAVIS_TAG}" .
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker tag "$IMAGE_NAME:latest" "${IMAGE_NAME}:${TRAVIS_TAG}"
+  - docker images
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+
+deploy:
+  provider: script
+  script: docker push "${IMAGE_NAME}:${TRAVIS_TAG}"
+  on:
+    tags: true
