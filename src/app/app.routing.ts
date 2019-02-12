@@ -12,7 +12,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { AddUserComponent } from './add-user/add-user.component';
 
 const routes: Routes = [
-  { path: "add-user", component: AddUserComponent, canActivate: [AuthGuard] }
+  { path: "add-user", component: AddUserComponent, canActivate: [AuthGuard] },
   { path: 'export/:id', component: ExportComponent, canActivate: [AuthGuard] },
   { path: 'user-management', component: UserManagementComponent, canActivate: [AuthGuard] },
   { path: "add-theme", component: ProposeThemeComponent },
