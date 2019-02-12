@@ -4,18 +4,18 @@ services:
   - docker
 
 script:
-  - docker build -t "${IMAGE_NAME}:latest" .
+  - docker build -t "spirogov/timecoder-ui:latest" .
 
 after_script:
   - docker images
 
 before_deploy:
-  - docker tag "$IMAGE_NAME:latest" "${IMAGE_NAME}:${TRAVIS_TAG}"
+  - docker tag "spirogov/timecoder-ui:latest" "spirogov/timecoder-ui:${TRAVIS_TAG}"
   - docker images
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 
 deploy:
   provider: script
-  script: docker push "${IMAGE_NAME}:${TRAVIS_TAG}"
+  script: docker push "spirogov/timecoder-ui:${TRAVIS_TAG}"
   on:
     tags: true
