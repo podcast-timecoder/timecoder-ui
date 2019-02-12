@@ -3,6 +3,11 @@ language: node
 services:
   - docker
 
+addons:
+  apt:
+    packages:
+      - docker-ce
+
 script:
   - docker build -t spirogov/timecoder-ui:latest .
 
