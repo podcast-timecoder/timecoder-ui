@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker build -t "spirogov/timecoder-ui:latest" .
+  - docker build -t spirogov/timecoder-ui:latest .
 
 after_script:
   - docker images
