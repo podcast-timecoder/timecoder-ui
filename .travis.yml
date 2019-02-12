@@ -1,8 +1,5 @@
 language: node
 
-services:
-  - docker
-
 addons:
   apt:
     packages:
