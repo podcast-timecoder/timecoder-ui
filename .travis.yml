@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker build -t "$IMAGE_NAME:${TRAVIS_TAG}" .
+  - docker build -t "$IMAGE_NAME:latest" .
 
 after_script:
   - docker images
