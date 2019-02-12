@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-management',
@@ -11,12 +12,17 @@ export class UserManagementComponent implements OnInit {
 
   userList: User[]
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(data => {
       this.userList = data
     });
+  }
+
+  addUser(){
+      this.router.navigate(['add-user']);
   }
 
 }

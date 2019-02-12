@@ -52,4 +52,8 @@ export class AuthService {
     return decoded.exp;
   }
 
+  register(user): Observable<any>{
+    return this.httpClient.post(`${environment.apiUrl}/gateway/auth/signup`, user);
+  }
+
 }

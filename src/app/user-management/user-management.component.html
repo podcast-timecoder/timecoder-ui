@@ -1,20 +1,30 @@
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead class="thead-light">
-          <tr>
-            <th>ID</th>
-            <th class="hidden">Name</th>
-            <th class="hidden">Login</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-          <tbody>
-            <tr *ngFor="let user of userList">
-              <td>{{ user.id }}</td> 
-              <td>{{ user.name }}</td>
-              <td>{{ user.username }}</td>
-              <td>{{ user.email }}</td>
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-warning mb-2" (click)="addUser()">Add user</button>
+  <div>
+</div>    
+
+<div class="row">
+  <div class="col">
+  <div class="table-responsive">
+      <table class="table table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>ID</th>
+              <th class="hidden">Name</th>
+              <th class="hidden">Login</th>
+              <th>Email</th>
             </tr>
-          </tbody>
-    </table>
+          </thead>
+            <tbody>
+              <tr *ngFor="let user of userList">
+                <td>{{ user.id }}</td> 
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+              </tr>
+            </tbody>
+      </table>
+  </div>
+  </div>
 </div>

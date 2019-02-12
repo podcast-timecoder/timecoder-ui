@@ -50,7 +50,7 @@
                     <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
                       <td>{{ theme.timecode }}</td>
                       <td [innerHTML]="theme.title | linkify"></td>
-                      <td><button *ngIf="currentUser.isAdmin" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
+                      <td><button class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
                     </tr>
                   </tbody>
             </table>

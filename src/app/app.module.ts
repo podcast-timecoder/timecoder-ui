@@ -21,6 +21,7 @@ import { LinkThemesComponent } from './link-themes/link-themes.component';
 import { LinkifyPipe } from './pipes/linkify.pipe';
 import { JwtInterceptor } from './jwt.interceptor';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
     ProposeThemeComponent,
     LoginComponent,
     LinkThemesComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
