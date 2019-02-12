@@ -8,6 +8,9 @@ addons:
     packages:
       - docker-ce
 
+before_script:
+  - docker --version
+
 script:
   - docker build -t spirogov/timecoder-ui:latest .
 
