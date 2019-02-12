@@ -3,6 +3,7 @@
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
           <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
+          <button *ngIf="currentUser.isAdmin" type="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</button>
       </div>
     </div>
     <div class="navbar-expand ml-auto navbar-nav">
