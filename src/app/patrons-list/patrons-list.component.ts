@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PatronList} from "../model/patron.list";
 import {PatronService} from "../service/patron.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-patrons-list',
@@ -12,12 +11,19 @@ export class PatronsListComponent implements OnInit {
 
   patronList: PatronList;
 
-  constructor(private patronService: PatronService, private router: Router) { }
+  constructor(private patronService: PatronService) { }
 
   ngOnInit() {
     this.patronService.getPatronList().subscribe(data => {
       this.patronList = data;
+      this.sortPatronsByAmount();
     });
+  }
+
+  sortPatronsByAmount(): void {
+    this.patronList.patrons.sort(function(a, b){
+      return b.amount - a.amount
+    })
   }
 
   transformPrice(val: number): number {
