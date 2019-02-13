@@ -24,6 +24,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { AddUserComponent } from './add-user/add-user.component';
 import { PatronsListComponent } from './patrons-list/patrons-list.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
+import { TrimPipe } from './pipes/trim.pipe';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AuthErrorComponent } from './auth-error/auth-error.component';
     EpisodeDetailsComponent,
     FilterPipe,
     LinkifyPipe,
+    TrimPipe,
     ExportComponent,
     ProposeThemeComponent,
     LoginComponent,

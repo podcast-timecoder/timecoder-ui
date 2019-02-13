@@ -1,11 +1,18 @@
 <div *ngIf="episode" class="container">
-  <div class="mb-3">{{ episode.name }}</div>
-  <div class="mb-2">Гости:</div>
-  <div class="mb-2">Темы:</div>
+  <div class="mb-3"><span class="item">{{ episode.name }}</span></div>
+  <div class="mb-2"><span class="item">Гости:</span></div>
+  <div class="mb-2"><span class="item">Темы:</span></div>
   <div *ngFor="let theme of episode?.themeList">
     <div *ngIf="theme.timecode">- {{ theme.timecode }} - {{ theme.title }}</div>
   </div>
   <div class="mb-2"></div>
-  <div>Telegram: t.me/automation_remarks</div>
-  <div>Стать патроном: www.patreon.com/automation_remarks</div>
+  <div><span class="item">Telegram:</span> t.me/automation_remarks</div>
+  <div><span class="item">Стать патроном:</span> www.patreon.com/automation_remarks</div>
+  <div class="mb-2"></div>
+  <div>
+    <span class="item">Спасибо патронам:</span>
+    <span>
+      {{ getPatrons() }}
+    </span>
+  </div>
 </div>  
