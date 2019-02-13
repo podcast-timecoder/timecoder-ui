@@ -1,7 +1,7 @@
 export class Patron {
   id: Number
   fullName: string
-  amount: Number
+  amount: number
   email: boolean
   active: boolean
 }
