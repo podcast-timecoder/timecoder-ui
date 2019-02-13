@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit {
     return this.authSerice.isAuthenticated()
   }
 
+  isAdmin(): boolean{
+    return this.sessionUserService.getSessionUser().isAdmin
+  }
+
   getCurrentUserName(){
     return this.sessionUserService.getSessionUser().username
   }

@@ -3,16 +3,13 @@
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
           <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
-          <button *ngIf="currentUser.isAdmin" type="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</button>
+          <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</button>
       </div>
     </div>
     <div class="navbar-expand ml-auto navbar-nav">
       <div class="navbar-nav">
-        <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="logout()">Logout</button>
         <a *ngIf="isLogged()" class="nav-item nav-link">{{ getCurrentUserName() }}</a>
-        <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
-          <i class="fa fa-github"></i>
-        </a>
+        <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="logout()">Logout</button>
       </div>
     </div>
   </nav>

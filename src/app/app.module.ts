@@ -23,6 +23,7 @@ import { JwtInterceptor } from './jwt.interceptor';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { PatronsListComponent } from './patrons-list/patrons-list.component';
+import { AuthErrorComponent } from './auth-error/auth-error.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { PatronsListComponent } from './patrons-list/patrons-list.component';
     LinkThemesComponent,
     UserManagementComponent,
     AddUserComponent,
-    PatronsListComponent
+    PatronsListComponent,
+    AuthErrorComponent
   ],
   imports: [
     BrowserModule,
