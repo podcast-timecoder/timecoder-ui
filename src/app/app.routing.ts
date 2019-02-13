@@ -17,7 +17,7 @@ import { AuthErrorComponent } from './auth-error/auth-error.component';
 
 const routes: Routes = [
   { path: "add-user", component: AddUserComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: "auth-error", component: AuthErrorComponent, canActivate: [AuthGuard] }
+  { path: "auth-error", component: AuthErrorComponent, canActivate: [AuthGuard] },
   { path: 'export/:id', component: ExportComponent, canActivate: [AuthGuard] },
   { path: 'user-management', component: UserManagementComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: "add-theme", component: ProposeThemeComponent },
