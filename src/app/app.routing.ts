@@ -13,6 +13,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { PatronsListComponent } from "./patrons-list/patrons-list.component";
 import { AdminGuardService as AdminGuard } from './service/admin-guard.service';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'link-themes/:id', component: LinkThemesComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'episode-details/:id', component: EpisodeDetailsComponent, canActivate: [AuthGuard] },
   { path: 'patrons-list', component: PatronsListComponent, canActivate: [AuthGuard, AdminGuard] },
-  { path: '**', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: HomePageComponent }
 ]
 
 export const routing = RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'});

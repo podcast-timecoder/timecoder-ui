@@ -25,6 +25,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { PatronsListComponent } from './patrons-list/patrons-list.component';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { TrimPipe } from './pipes/trim.pipe';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TrimPipe } from './pipes/trim.pipe';
     UserManagementComponent,
     AddUserComponent,
     PatronsListComponent,
-    AuthErrorComponent
+    AuthErrorComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
