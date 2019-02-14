@@ -14,8 +14,10 @@ export class ProposeThemeComponent implements OnInit {
 
   addForm: FormGroup;
   themes: Theme[];
-  added: boolean
-  error: Object
+  error: Object;
+  validation: string;
+  submitted:boolean = false;
+  added: boolean = false;
 
   constructor(private formBuilder: FormBuilder, 
               private router: Router, 
@@ -24,19 +26,30 @@ export class ProposeThemeComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      title: ['', Validators.required]
+      title: ['', [Validators.required, Validators.minLength(10)]]
     });
     this.episodeService.getAllThemesWithoutEpisode().subscribe(data => this.themes = data);
   }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.addForm.controls; }
+
+
   onSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.addForm.invalid) {
+      return;
+    }
+
     this.episodeService.addFreeTheme(this.addForm.value)
       .subscribe(data => { 
         this.addForm.reset() 
         this.getAllThemesWithoutEpisode();
-        this.added = true;
+        this.submitted = false;
       },
       error => {
+        this.submitted = false;
         console.error(error)
         this.error = error;
       });

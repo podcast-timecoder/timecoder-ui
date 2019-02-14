@@ -12,11 +12,14 @@
         <div class="form-group mb-2">
           <label for="themeTitle">Theme for the next QAGuild podcast episode</label>
           <input type="text" formControlName="title" placeholder="Theme text" name="title" class="form-control" id="themeTitle" required>
-          <div *ngIf="added" class="valid-feedback">
+          <!-- <div *ngIf="submitted && added" class="valid-feedback">
               Your record sucesfully added! Thank you!
-          </div>
-          <div *ngIf="error" class="invalid-feedback">
+          </div> -->
+          <div *ngIf="submitted && error" class="invalid-feedback">
               {{ error.error.message }}
+          </div>
+          <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+              <div *ngIf="f.title.errors.required || f.title.errors.minlength">Field must be at least 10  characters</div>
           </div>
         </div>
         <button type="submit" class="btn btn-outline-success">Add theme</button>
