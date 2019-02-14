@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["user-management"]);
   }
 
+  topics(){
+    this.router.navigate(["add-theme"]);
+  }
+
   isLogged(): boolean {
     return this.authSerice.isAuthenticated()
   }
