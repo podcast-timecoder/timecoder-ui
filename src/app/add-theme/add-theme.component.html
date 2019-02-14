@@ -1,32 +1,45 @@
-<div class="row">
-  <div class="col-12 mb-2">
-    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-      <div class="form-group mb-2">
-        <input type="text" formControlName="title" placeholder="Add theme" name="title" class="form-control" id="themeTitle" required>
-        <div *ngIf="added" class="valid-feedback">
-            Your record sucesfully added! Thank you!
-        </div>
-        <div *ngIf="error" class="invalid-feedback">
-            {{ error.error.message }}
-        </div>
-      </div>
-    </form>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+          <a class="btn btn-outline-warning btn-block mb-3" href="https://www.patreon.com/join/automation_remarks?">Support podcast</a>
+    </div>  
   </div>
 
-  <div class="col-12" *ngIf="isAuthorized()">
-    <table class="table">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Created at</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let theme of themes">
-          <td [innerHTML]="theme.title | linkify"></td>
-          <td>{{ theme.createdAt | date:'hh:mm:ss EEEE dd LLL'}}</td>
-        </tr>
-        </tbody>
-    </table>
+  <div class="row">  
+    <div class="col-2"></div>
+    <div class="col-8 mb-2">
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-2">
+          <label for="themeTitle">Theme for the next QAGuild podcast episode</label>
+          <input type="text" formControlName="title" placeholder="Theme text" name="title" class="form-control" id="themeTitle" required>
+          <div *ngIf="added" class="valid-feedback">
+              Your record sucesfully added! Thank you!
+          </div>
+          <div *ngIf="error" class="invalid-feedback">
+              {{ error.error.message }}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-success">Add theme</button>
+      </form>
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" *ngIf="isAuthorized()">
+      <table class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Created at</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let theme of themes">
+            <td [innerHTML]="theme.title | linkify"></td>
+            <td>{{ theme.createdAt | date:'hh:mm:ss EEEE dd LLL'}}</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
