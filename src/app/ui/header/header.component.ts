@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["patrons-list"]);
   }
 
+  users(){
+    this.router.navigate(["user-management"]);
+  }
+
   isLogged(): boolean {
     return this.authSerice.isAuthenticated()
   }

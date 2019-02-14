@@ -5,6 +5,7 @@
           <a href="https://www.patreon.com/join/automation_remarks?" class="btn btn-outline-warning mx-2">Donate</a>
           <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
           <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</button>
+          <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="users()">Users</button>
       </div>
     </div>
     <div class="navbar-expand ml-auto navbar-nav">
