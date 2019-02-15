@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EpisodeService {
+  
   baseUrl: string = `${environment.apiUrl}/episodes`;
   themeBaseUrl = `${environment.apiUrl}/theme`;
 
@@ -58,6 +59,10 @@ export class EpisodeService {
 
   removeEpisode(id: Number): Observable<any> {
     return this.apiClient.delete(`${this.baseUrl}/${id}/remove`)
+  }
+
+  deleteTopic(theme: Theme): Observable<any> {
+    return this.apiClient.delete(`${this.themeBaseUrl}/${theme.id}/delete`)
   }
 
 }

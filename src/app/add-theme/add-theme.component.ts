@@ -62,4 +62,10 @@ export class ProposeThemeComponent implements OnInit {
   isAuthorized(){
     return this.authService.isAuthenticated()
   }
+
+  deleteTopic(theme: Theme){
+    this.episodeService.deleteTopic(theme).subscribe( data => {
+      this.getAllThemesWithoutEpisode();
+    });
+  }
 }
