@@ -33,19 +33,12 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnInit() {
     const id = + this.activatedRoute.snapshot.paramMap.get('id');
-
     this.postService.getPostById(id).subscribe(data => {
-      this.post = data;
-      console.log('post',this.post)
-      console.log('episode',this.post.episodeId)
-
-      this.episodeService.getEpisodeById(this.post.episodeId)
-        .subscribe(data => this.episode = data);
+      this.post = data['post'];
+      this.episode = data['episode'];
+      this.patronList = data['patrons'];
     });
 
-    this.patronService.getPatronList().subscribe(data => {
-      this.patronList = data;
-    });
     this.currentUser = this.sessionUserService.getSessionUser()
   }
 

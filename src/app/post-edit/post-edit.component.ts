@@ -41,9 +41,8 @@ export class PostEditComponent implements OnInit {
 
     const postId = +this.route.snapshot.paramMap.get('id');
     this.postService.getPostById(postId).subscribe(data => {
-      this.post = data;
-      console.log(this.post)
-      this.episodeService.getEpisodeById(this.post.episodeId).subscribe(data => {this.episode = data});
+      this.post = data['post'];
+      this.episode = data['episode'];
       this.guests = this.post.guests
       this.setForm();
     });
@@ -78,7 +77,6 @@ export class PostEditComponent implements OnInit {
       .subscribe(data => {
           this.postForm.reset()
           this.submitted = false;
-          console.log(data)
           this.router.navigate([`post-details/${this.post.id}`]);
         },
         error => {
