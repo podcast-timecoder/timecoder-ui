@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { EpisodeService } from '../service/episode.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import { Episode } from '../model/episode';
-import { PatronList } from '../model/patron.list';
-import { PatronService } from '../service/patron.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Episode} from "../model/episode";
+import {EpisodeService} from "../service/episode.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PatronService} from "../service/patron.service";
 import {PostService} from "../service/post.service";
+import {Post} from "../model/post";
 
 @Component({
-  selector: 'app-export',
-  templateUrl: './export.component.html',
-  styleUrls: ['./export.component.css']
+  selector: 'app-post-edit',
+  templateUrl: './post-edit.component.html',
+  styleUrls: ['./post-edit.component.css']
 })
-export class ExportComponent implements OnInit {
+export class PostEditComponent implements OnInit {
 
   postForm: FormGroup;
   episode: Episode;
-  patronList: PatronList;
+  post: Post;
   submitted = false;
   guests: Array<string> = [];
 
@@ -29,27 +29,35 @@ export class ExportComponent implements OnInit {
 
   ngOnInit() {
     this.postForm = this.formBuilder.group({
+      id: [],
+      episodeId: [],
+      createdAt: [],
       name: ['', Validators.required],
-      episodeId: ['', Validators.required],
       shortDescription: ['', [Validators.required]],
       description: [''],
       link: ['', [Validators.required]],
       guests: ['', [Validators.required]]
     });
 
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.episodeService.getEpisodeById(id).subscribe(data => {this.episode = data
-      this.setForm()
-    });
-    this.patronService.getPatronList().subscribe(data => {
-      this.patronList = data;
+    const postId = +this.route.snapshot.paramMap.get('id');
+    this.postService.getPostById(postId).subscribe(data => {
+      this.post = data;
+      console.log(this.post)
+      this.episodeService.getEpisodeById(this.post.episodeId).subscribe(data => {this.episode = data});
+      this.guests = this.post.guests
+      this.setForm();
     });
   }
 
   setForm() {
     this.postForm.patchValue({
-      name:    this.episode.name,
-      episodeId: this.episode.id,
+      id: this.post.id,
+      episodeId: this.post.episodeId,
+      name:    this.post.name,
+      createdAt: this.post.createdAt,
+      shortDescription:    this.post.shortDescription,
+      description:    this.post.description,
+      link:    this.post.link,
     });
   }
 
@@ -65,11 +73,13 @@ export class ExportComponent implements OnInit {
       return;
     }
 
-    this.postService.addPost(this.postForm.value)
+
+    this.postService.updatePost(this.post.id, this.postForm.value)
       .subscribe(data => {
           this.postForm.reset()
           this.submitted = false;
-          this.router.navigate([`post-details/${data.created}`]);
+          console.log(data)
+          this.router.navigate([`post-details/${this.post.id}`]);
         },
         error => {
           this.submitted = false;
@@ -86,4 +96,13 @@ export class ExportComponent implements OnInit {
     this.guests.splice(index, 1);
   }
 
+  cancel() {
+    this.router.navigate(['post-details/' + this.post.id]);
+  }
+
+  deletePost() {
+    this.postService.deletePost(this.post.id).subscribe(data => {
+      this.router.navigate(['home']);
+    })
+  }
 }

@@ -14,6 +14,8 @@ import { PatronsListComponent } from "./patrons-list/patrons-list.component";
 import { AdminGuardService as AdminGuard } from './service/admin-guard.service';
 import { AuthErrorComponent } from './auth-error/auth-error.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import {PostEditComponent} from "./post-edit/post-edit.component";
 
 
 const routes: Routes = [
@@ -27,7 +29,9 @@ const routes: Routes = [
   { path: 'episode-details/:id', component: EpisodeDetailsComponent, canActivate: [AuthGuard] },
   { path: 'patrons-list', component: PatronsListComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: HomePageComponent }
+  { path: 'home', component: HomePageComponent },
+  {path: 'post-details/:id', component: PostDetailsComponent},
+  {path: 'post-edit/:id', component: PostEditComponent, canActivate: [AuthGuard, AdminGuard] },
 ]
 
 export const routing = RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'});

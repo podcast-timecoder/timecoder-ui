@@ -1,0 +1,56 @@
+<div class="row mb-2">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">{{post?.name}} </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <i class="fa fa-calendar"> {{post?.createdAt | date:'dd/MM/yyyy'}}</i>
+        </p>
+        <p class="card-text">{{post?.description}}</p>
+        <div class="col-8">
+          <strong>Гости:</strong>
+          <ul *ngFor="let guest of post?.guests" class="list-group">
+          <li>{{guest}}</li>
+        </ul>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="col-8">
+          <strong>Темы:</strong>
+          <ul *ngFor="let theme of episode?.themeList" class="list-group">
+            <li>{{theme.title}} - {{theme.timecode}}</li>
+          </ul>
+        </div>
+    </div>
+      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+              [src]="sanitizer.bypassSecurityTrustResourceUrl(post?.link)"></iframe>
+      <div class="mb-2"></div>
+      <div class="col-8">
+          <div>
+            <!--<i class="fa fa-telegram" aria-hidden="true" style="color:#0088cc"></i>-->
+            <span class="item">
+              <strong> Telegram: </strong> <a href="http://t.me/automation_remarks">@automation_remarks</a>
+            </span>
+          </div>
+          <div class="mb-2"></div>
+          <div>
+            <!--<i class="fa fa-patreon"></i>-->
+            <span class="item">
+              <strong> Стать патроном: </strong> <a href="http://patreon.com/automation_remarks">patreon.com/automation_remarks</a>
+            </span> </div>
+          <div class="mb-2"></div>
+          <div>
+            <span class="item"><strong>Спасибо патронам:</strong></span>
+            <span> {{ getPatrons() }}</span>
+          </div>
+        </div>
+      </div>
+    <div class="mb-2"></div>
+    <button *ngIf="currentUser?.isAdmin" class="btn btn-warning" (click)="editPost()">Update</button>
+    </div>
+
+</div>
+
