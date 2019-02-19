@@ -1,12 +1,3 @@
-<!-- <div class="container"> -->
-  <div class="row mb-3">
-      <div class="col-6">
-        <button *ngIf="currentUser.isAdmin" type="button" class="btn btn-block btn btn-warning mb-3" (click)="userManagement()">User management</button>
-      </div>
-      <div class="col-6">
-        <button type="button" class="btn btn-block btn-dark mb-3" (click)="addTheme()">Add topic</button>
-      </div>  
-  </div>
   <div class="row">
     <div class="col">
         <form *ngIf="currentUser.isAdmin" [formGroup]="addForm" (ngSubmit)="onSubmit()" class="add-episode-form">
@@ -40,4 +31,3 @@
         </ul>  
     </div>
   </div>
-<!-- </div> -->
