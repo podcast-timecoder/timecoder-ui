@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   {path: 'post-details/:id', component: PostDetailsComponent},
   {path: 'post-edit/:id', component: PostEditComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: '**', component: HomePageComponent },
 ]
 
 export const routing = RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'});

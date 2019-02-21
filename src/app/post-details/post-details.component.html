@@ -40,16 +40,17 @@
             <!--<i class="fa fa-patreon"></i>-->
             <span class="item">
               <strong> Стать патроном: </strong> <a href="http://patreon.com/automation_remarks">patreon.com/automation_remarks</a>
-            </span> </div>
+            </span>
+          </div>
           <div class="mb-2"></div>
+      </div>
           <div>
-            <span class="item"><strong>Спасибо патронам:</strong></span>
-            <span> {{ getPatrons() }}</span>
+            <span class="col-8 item"><strong>Спасибо патронам:</strong></span>
+            <span *ngFor="let patron of patronList?.patrons" class="commaList">{{patron.fullName}}</span>
           </div>
         </div>
-      </div>
     <div class="mb-2"></div>
-    <button *ngIf="currentUser?.isAdmin" class="btn btn-warning" (click)="editPost()">Update</button>
+    <button *ngIf="currentUser?.isAdmin" class="btn btn-warning" (click)="editPost()">Edit</button>
     </div>
 
 </div>

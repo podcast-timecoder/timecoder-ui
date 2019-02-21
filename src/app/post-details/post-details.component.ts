@@ -42,9 +42,6 @@ export class PostDetailsComponent implements OnInit {
     this.currentUser = this.sessionUserService.getSessionUser()
   }
 
-  getPatrons(): string {
-    return this.patronList.patrons.map(it => it.fullName).join(", ")
-  }
 
   editPost() {
     const id = + this.activatedRoute.snapshot.paramMap.get('id');
