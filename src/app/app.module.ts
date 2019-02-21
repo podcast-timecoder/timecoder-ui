@@ -28,6 +28,7 @@ import { TrimPipe } from './pipes/trim.pipe';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     AuthErrorComponent,
     HomePageComponent,
     PostDetailsComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

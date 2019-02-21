@@ -1,66 +1,18 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h2>Create post</h2>
-      <form [formGroup]="postForm">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" formControlName="name" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Name is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Short Description</label>
-          <input type="text" formControlName="shortDescription" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && f.shortDescription.errors }"/>
-          <div *ngIf="submitted && f.shortDescription.errors" class="invalid-feedback">
-            <div *ngIf="f.shortDescription.errors.required">Short Description is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Description</label>
-          <textarea formControlName="description" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Guests:</label>
-          <div class="input-group mb-3">
-            <input formControlName="guests" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && f.guests.errors }">
-            <div *ngIf="submitted && f.guests.errors" class="invalid-feedback">
-              <div *ngIf="f.guests.errors.required">Guests is required</div>
-            </div>
-            <div class="input-group-append">
-              <button class="btn btn-primary" (keyup.enter)="addGuest()" (click)="addGuest()">+</button>
-            </div>
-          </div>
-          <ul>
-            <li *ngFor="let guest of guests; index as i">
-              <span class="badge badge-light">{{guest}}
-                <span class="fa fa-close" (click)="removeGuest(i)"> </span>
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div class="form-group">
-          <label>Themes:</label>
-          <div *ngFor="let theme of episode?.themeList">
-            <div *ngIf="theme.timecode">- {{ theme.timecode }} - {{ theme.title }}</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Link on SoundCloud</label>
-          <input type="url" formControlName="link" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && f.link.errors }"/>
-          <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
-            <div *ngIf="f.link.errors.required">Link on SoundCloud is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" (click)="submitForm()">Create post</button>
-        </div>
-      </form>
-    </div>
+<div *ngIf="episode" class="container">
+  <div class="mb-3"><span class="item">{{ episode.name }}</span></div>
+  <div class="mb-2"><span class="item">Гости:</span></div>
+  <div class="mb-2"><span class="item">Темы:</span></div>
+  <div *ngFor="let theme of episode?.themeList">
+    <div *ngIf="theme.timecode">- {{ theme.timecode }} - {{ theme.title }}</div>
   </div>
+  <div class="mb-2"></div>
+  <div><span class="item">Telegram:</span> t.me/automation_remarks</div>
+  <div><span class="item">Стать патроном:</span> www.patreon.com/automation_remarks</div>
+  <div class="mb-2"></div>
+  <div>
+    <span class="item">Спасибо патронам:</span>
+     <span *ngFor="let patron of patronList?.patrons" class="comma-list">{{patron.fullName}}</span>
+  </div>
+  <div class="mb-2"></div>
+  <button type="button" class="btn btn-primary" (click)="gotToPost()">Post</button>
 </div>

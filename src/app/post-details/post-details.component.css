@@ -1,8 +1,0 @@
-.commaList::after {
-  content: ", ";
-}
-
-.commaList:last-child::after {
-  content: "";
-}
-

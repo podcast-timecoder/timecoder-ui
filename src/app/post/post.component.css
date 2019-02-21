@@ -1,0 +1,26 @@
+.item {
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 25px;
+}
+
+li {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.fa-close {
+  cursor: pointer;
+}
+
+.badge {
+  font-size: 100%;
+}
+
+
