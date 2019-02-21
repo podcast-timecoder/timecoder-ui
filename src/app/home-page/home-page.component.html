@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<ul *ngFor="let post of postList" class="list-group">
+<ul *ngFor="let post of postList?.slice(postList.length - 5, postList.length)" class="list-group">
   <div class="row mb-2">
     <div class="col-2"></div>
     <div class="col-8">
