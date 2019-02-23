@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {PostService} from "../service/post.service";
 import {Post} from "../model/post";
+import { Page } from '../model/paged.post';
 
 @Component({
   selector: 'app-home-page',
@@ -10,13 +11,13 @@ import {Post} from "../model/post";
 })
 export class HomePageComponent implements OnInit {
 
-  postList: Post[]
+  page: Page
 
   constructor(private router: Router, private postService: PostService) { }
 
   ngOnInit() {
     this.postService.getPostList()
-      .subscribe(data => this.postList = data)
+      .subscribe(data => this.page = data)
   }
 
   goToAddTheme(){

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {PatronList} from "../model/patron.list";
 import {Post} from "../model/post";
 import {Episode} from "../model/episode";
+import { Page } from '../model/paged.post';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class PostService {
   constructor(private http: HttpClient) { }
   baseUrl: string = `${environment.apiUrl}`
 
-  getPostList(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/posts`)
+  getPostList(): Observable<Page> {
+    return this.http.get<Page>(`${this.baseUrl}/posts?orderBy=DESC&pageNumber=0&pageSize=5&sortBy=id`)
   }
 
   getPostById(id: Number): Observable<Post> {
