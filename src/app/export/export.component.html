@@ -11,8 +11,8 @@
   <div class="mb-2"></div>
   <div>
     <span class="item">Спасибо патронам:</span>
-    <span>
-      {{ getPatrons() }}
-    </span>
+     <span *ngFor="let patron of patronList?.patrons" class="comma-list">{{patron.fullName}}</span>
   </div>
-</div>  
+  <div class="mb-2"></div>
+  <button type="button" class="btn btn-primary" (click)="gotToPost()">Post</button>
+</div>

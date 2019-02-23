@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EpisodeService } from '../service/episode.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Episode } from '../model/episode';
 import { PatronList } from '../model/patron.list';
 import { PatronService } from '../service/patron.service';
@@ -14,9 +14,10 @@ export class ExportComponent implements OnInit {
 
   episode: Episode;
   patronList: PatronList;
-  
+
   constructor(private episodeService: EpisodeService,
               private route: ActivatedRoute,
+              private router: Router,
               private patronService: PatronService) { }
 
   ngOnInit() {
@@ -27,8 +28,9 @@ export class ExportComponent implements OnInit {
     });
   }
 
-  getPatrons(): string {
-    return this.patronList.patrons.map(it => it.fullName).join(", ")
-  }
+  gotToPost() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.router.navigate(['post'], { queryParams: { episodeId: id} });
 
+  }
 }
