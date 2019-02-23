@@ -1,64 +1,72 @@
-<div class="row mb-2">
-  <div class="col-2"></div>
-  <div class="col-8">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title mb-0">{{post?.name}} </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          <i class="fa fa-calendar"> {{post?.createdAt | date:'dd/MM/yyyy'}}</i>
-        </p>
-        <p class="card-text">{{post?.description}}</p>
-        <h6>Гости:</h6>
-        <div class="col-8">
-          <ul *ngFor="let guest of post?.guests" class="list-group">
-            <li>{{guest}}</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-8">
-        <h6>Темы:</h6>
-        <div class="col-8">
-          <ul *ngFor="let theme of episode?.themeList" class="list-group">
-            <li>{{theme.title}} - {{theme.timecode}}</li>
-          </ul>
-        </div>
-    </div>
-      <div class="player">
-        <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.link)"></div>
-      </div>
-      <div class="mb-2"></div>
-      <div class="col-12">
-          <div>
-              <span class="item">
-                <h6> Itunes: <a href="https://itunes.apple.com/ua/podcast/qaguild/id1350668092?l=ru&mt=2">@qaguild</a></h6>
-              </span>
-          </div>
-          <div>
-            <span class="item">
-              <h6> Telegram: <a href="http://t.me/automation_remarks">@automation_remarks</a></h6>
-            </span>
-          </div>
-          <div class="mb-2"></div>
-          <div>
-            <span class="item">
-              <h6> Стать патроном: <a href="http://patreon.com/automation_remarks">patreon.com/automation_remarks</a></h6> 
-            </span>
-          </div>
-          <div class="mb-3"></div>
-          <div>
-              <span class="item"><h6>Спасибо патронам:</h6></span>
-          </div>
-          <div>
-              <span *ngFor="let patron of patronList?.patrons" class="comma-list">{{ patron.fullName }}</span>
-          </div>
-        </div>
-        <div class="mb-2"></div>
-      </div>
-    <div class="mb-2"></div>
-    <button *ngIf="currentUser?.isAdmin" class="btn btn-warning" (click)="editPost()">Edit</button>
-    </div>
+<div class="container">
+  
+    <div class="row" id="content-main">
+      <div class="col-md-8">
+          <div class="col-md-12 content-card">
+            <p class="card-text">
+                  <i class="fa fa-calendar"> {{ post?.createdAt | date:'dd/MM/yyyy' }}</i>
+            </p>
+            <div class="mb-4">
+              <h3>{{ post.name }}</h3>
+            </div>
 
-</div>
+            <p class="card-text mb-2">{{ post?.description }}</p>
 
+            <h6>Гости:</h6>
+            <div class="col-12 mb-3 mx-3">
+              <ul *ngFor="let guest of post?.guests" class="list-group">
+                <li>{{guest}}</li>
+              </ul>
+            </div>
+            
+        
+            <h6>Темы:</h6>
+            <div class="col-12 mb-3 mx-3">
+              <ul *ngFor="let theme of episode?.themeList" class="list-group">
+                <li>{{theme.title}} - {{theme.timecode}}</li>
+              </ul>
+            </div>
+
+            
+            <div class="player mb-3">
+                <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.link)"></div>
+            </div>
+
+            <div class="mb-2">
+              <div>
+                <span class="item">
+                  <h6> Itunes: <a href="https://itunes.apple.com/ua/podcast/qaguild/id1350668092?l=ru&mt=2">@qaguild</a></h6>
+                </span>
+              </div>
+              <div>
+                <span class="item">
+                  <h6> Telegram: <a href="http://t.me/automation_remarks">@automation_remarks</a></h6>
+                </span>
+              </div>
+              <div class="mb-2"></div>
+              <div>
+                <span class="item">
+                  <h6> Стать патроном: <a href="http://patreon.com/automation_remarks">patreon.com/automation_remarks</a></h6> 
+                </span>
+              </div>
+              <div class="mb-3"></div>
+              <div>
+                  <span class="item"><h6>Спасибо патронам:</h6></span>
+              </div>
+              <div>
+                <span *ngFor="let patron of patronList?.patrons" class="comma-list">{{ patron.fullName }}</span>
+              </div>
+            </div>
+            <div>
+              <button type="button" *ngIf="currentUser?.isAdmin" class="btn btn-warning btn-block" (click)="editPost()">Edit</button>
+            </div>  
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+          <div class="sidebar-card">
+              <button type="button" class="btn btn-block btn-dark" (click)="goToAddTheme()">Предложить тему для подкаста</button>
+          </div>  
+      </div>
+    </div>
+  </div>

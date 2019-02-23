@@ -1,14 +1,8 @@
-
-
 <div class="container">
-  <div class="row">
-      <div class="col-md-12">
-          <button class="btn btn-dark btn-block mb-3" (click)="goToAddTheme()">Add topic for the next episode</button>
-      </div>
-  </div>
+  
   <div class="row" id="content-main">
-    <div class="col-md-12">
-      <div class="row">
+    <div class="col-md-8">
+  
         <div *ngFor="let post of page?.content" class="col-md-12 content-card">
             <h3>
                <a href="/post-details/{{ post.id }}">{{ post.name }}</a>
@@ -25,10 +19,23 @@
                 <a class="btn btn-dark" href="/post-details/{{ post.id }}" role="button">Слушать...</a>
             </div>
         </div>
-      </div>
+     
     </div>
+
+    <div class="col-md-4">
+        <div class="sidebar-card mb-2">
+            <div class="logo">
+              <a href="about.html"><img src="assets/img/black_logo.png" alt="" class="img-responsive img-circle" style="margin: 0 auto;"></a>
+            </div>
+           
+        </div>
+
+        <div class="sidebar-card">
+            <button type="button" class="btn btn-block btn-dark" (click)="goToAddTheme()">Предложить тему для подкаста</button>
+        </div>  
     </div>
   </div>
+</div>
 
 
 
