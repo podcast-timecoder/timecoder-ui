@@ -4,10 +4,11 @@
       <div class="col-md-8">
           <div class="col-md-12 content-card">
             <p class="card-text">
-                  <i class="fa fa-calendar"> {{ post?.createdAt | date:'dd/MM/yyyy' }}</i>
+                  <i class="fa fa-calendar"></i>
+                  {{ post?.createdAt | date:'dd/MM/yyyy' }}
             </p>
             <div class="mb-4">
-              <h3 class="post-name">{{ post.name }}</h3>
+              <h3 class="post-name">{{ post?.name }}</h3>
             </div>
 
             <p class="card-text mb-2">{{ post?.description }}</p>
