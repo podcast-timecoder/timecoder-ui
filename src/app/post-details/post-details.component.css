@@ -70,3 +70,7 @@
     background-color: #1da1f2;
     width: 30px;
 }
+
+.post-name{
+    word-break: break-word;
+}
