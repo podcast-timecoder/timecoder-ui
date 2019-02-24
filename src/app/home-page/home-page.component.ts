@@ -23,10 +23,6 @@ export class HomePageComponent implements OnInit {
       .subscribe(data => this.page = data)
   }
 
-  goToAddTheme(){
-    this.router.navigate(["add-theme"])
-  }
-
   postDetails(post: Post){
     this.router.navigate([`post-details/${post.id}`]);
   }
