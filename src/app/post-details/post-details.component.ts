@@ -47,4 +47,9 @@ export class PostDetailsComponent implements OnInit {
     const id = + this.activatedRoute.snapshot.paramMap.get('id');
     this.router.navigate(['post-edit/' + id]);
   }
+
+  goToAddTheme(){
+    this.router.navigate(["add-theme"])
+  }
+
 }
