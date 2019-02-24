@@ -29,6 +29,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostComponent } from './post/post.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { PostComponent } from './post/post.component';
     HomePageComponent,
     PostDetailsComponent,
     PostEditComponent,
-    PostComponent
+    PostComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
