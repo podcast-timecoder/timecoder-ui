@@ -32,6 +32,10 @@
     margin-bottom: 20px;
 }
 
+.content-card h3 {
+    word-break: break-word;
+}
+
 .list-inline {
     padding-left: 6px;
     margin-left: -5px;
@@ -48,4 +52,10 @@
 .logo img {
     width: 100%;
     padding: 15px;
+}
+
+.btn-gold {
+    color: #ffd639;
+    background-color: #343a40;
+    border-color: #343a40;
 }

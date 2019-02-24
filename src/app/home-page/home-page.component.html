@@ -13,11 +13,13 @@
             {{ post.createdAt | date:'dd/MM/yyyy' }}
           </li>
         </ul>
-        <div class="text-left">
-          <p class="summary">{{ post.shortDescription }}</p>
-        </div>
-        <div class="text-right">
-          <a class="btn btn-dark" href="/post-details/{{ post.id }}" role="button">Слушать...</a>
+        <div class="row">
+          <div class="col-md-6 text-left">
+            <p class="summary">{{ post.shortDescription }}</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <a class="btn btn-gold" href="/post-details/{{ post.id }}" role="button">Слушать</a>
+          </div>
         </div>
       </div>
 
