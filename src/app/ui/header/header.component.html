@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark mb-2">
-    <a class="navbar-brand" href="/">QAGuild podcast</a>
+    <a class="navbar-brand" href="/">QAGuild</a>
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
           <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
@@ -10,7 +10,6 @@
     </div>
     <div class="navbar-expand ml-auto navbar-nav">
       <div class="navbar-nav">
-        <a *ngIf="!isLogged()" href="https://www.patreon.com/join/automation_remarks?" class="btn btn-outline-warning mx-2">Donate</a>
         <a *ngIf="isLogged()" class="nav-item nav-link">{{ getCurrentUserName() }}</a>
         <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="logout()">Logout</button>
       </div>
