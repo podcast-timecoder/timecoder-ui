@@ -55,7 +55,7 @@
             <td>{{ theme.timecode }}</td>
             <td [innerHTML]="theme.title | linkify"></td>
             <td>
-              <button type="button" class="btn btn-warning item" (click)="unlinkThemes(episode.id, theme)">Unlink</button>
+              <button type="button" class="btn btn-warning item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
               <button type="button" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
             </td>
           </tr>

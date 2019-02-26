@@ -93,8 +93,8 @@ export class EpisodeDetailsComponent implements OnInit {
     });
  }
 
-  unlinkThemes(id: number, theme: Theme) {
-    this.episodeService.unlinkThemesToEpisode(id, theme).subscribe(data => { this.getEpisodeDetails()});
+  unlinkThemes(id: number, themeId: number) {
+    this.episodeService.unlinkThemesToEpisode(id, themeId).subscribe(data => { this.getEpisodeDetails()});
   }
 
 }

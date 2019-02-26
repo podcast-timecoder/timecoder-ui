@@ -57,8 +57,8 @@ export class EpisodeService {
     return this.apiClient.post(`${this.baseUrl}/${episode.id}`, selectedThemeIds)
   }
 
-  unlinkThemesToEpisode(id: Number, theme: Theme): Observable<any> {
-    return this.apiClient.post(`${this.baseUrl}/${id}/unlink`, theme)
+  unlinkThemesToEpisode(id: number, themeId: number): Observable<any> {
+    return this.apiClient.post(`${this.baseUrl}/${id}/theme/${themeId}/unlink`, {})
   }
 
   removeEpisode(id: Number): Observable<any> {
