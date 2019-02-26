@@ -1,18 +1,18 @@
 <div *ngIf="episode">
   <div *ngIf="currentUser.isAdmin" class="row">
-      <div class="col mb-2">
-        <button type="button" class="btn btn-block btn-outline-info" (click)="linkThemes(episode)">Link themes</button>
-      </div>  
+    <div class="col mb-2">
+      <button type="button" class="btn btn-block btn-outline-info" (click)="linkThemes(episode)">Link themes</button>
     </div>
-  <div class="row">
-        <div class="col">
-          Current: {{ now | date:'hh:mm:ss EEEE dd LLL' }}
-        </div>
   </div>
-  <div class="row mb-2">  
-        <div class="col">
-          Started: {{ episode.startTime | date:'hh:mm:ss EEEE dd LLL'}}
-        </div>    
+  <div class="row">
+    <div class="col">
+      Current: {{ now | date:'hh:mm:ss EEEE dd LLL' }}
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      Started: {{ episode.startTime | date:'hh:mm:ss EEEE dd LLL'}}
+    </div>
   </div>
   <div class="row mb-2">
     <div class="col-4">
@@ -28,38 +28,47 @@
   </div>
   <div *ngIf="currentUser.isAdmin" class="row mb-3">
     <div class="col-6">
-      <button type="button" class="btn btn-warning btn-block" [disabled]='episode.started' (click)="startEpisode(episode)">Start episode</button>
+      <button type="button" class="btn btn-warning btn-block" [disabled]='episode.started'
+              (click)="startEpisode(episode)">Start episode
+      </button>
     </div>
     <div class="col-6">
-      <button type="button" class="btn btn-danger btn-block" [disabled]='!episode.started' (click)="stopEpisode(episode)">Stop episode</button>
-    </div>  
+      <button type="button" class="btn btn-danger btn-block" [disabled]='!episode.started'
+              (click)="stopEpisode(episode)">Stop episode
+      </button>
+    </div>
   </div>
   <div class="row">
-      <div class="col">
-        <div class="table-responsive">
-            <table class="table table-hover">
-              <caption>Theme list</caption>
-                <thead class="thead-light">
-                  <tr>
-                    <th>Timecode</th>
-                    <th class="hidden">Title</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                  <tbody>
-                    <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
-                      <td>{{ theme.timecode }}</td>
-                      <td [innerHTML]="theme.title | linkify"></td>
-                      <td><button class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button></td>
-                    </tr>
-                  </tbody>
-            </table>
-        </div>
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table">
+          <caption>Theme list</caption>
+          <thead class="thead-light">
+          <tr>
+            <th>Timecode</th>
+            <th class="hidden">Title</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
+            <td>{{ theme.timecode }}</td>
+            <td [innerHTML]="theme.title | linkify"></td>
+            <td>
+              <button type="button" class="btn btn-warning item" (click)="unlinkThemes(episode.id, theme)">Unlink</button>
+              <button type="button" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
   </div>
   <div *ngIf="currentUser.isAdmin" class="row mb-5">
-      <div class="col-12 mb-5">
-            <button type="button" class="btn btn-info btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">Export this episode</button>
-      </div>
+    <div class="col-12 mb-5">
+      <button type="button" class="btn btn-info btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">
+        Export this episode
+      </button>
+    </div>
   </div>
 </div>

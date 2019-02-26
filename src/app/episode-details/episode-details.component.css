@@ -3,3 +3,16 @@
     width: 100px;
     float:right;
 }
+
+.them-name {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  vertical-align: center;
+}
+
+.them-name:hover {
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
