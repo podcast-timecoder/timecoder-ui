@@ -24,7 +24,7 @@
             <h6>Темы:</h6>
             <div class="col-12 mb-3 mx-3">
               <ul *ngFor="let theme of episode?.themeList" class="list-group">
-                <li *ngIf="theme.timecode">{{theme.title}} - {{theme.timecode}}</li>
+                <li *ngIf="theme.timecode">{{theme.title}} - <em>{{theme.timecode}}</em></li>
               </ul>
             </div>
 
