@@ -25,7 +25,7 @@ export class LinkifyWithTextPipe implements PipeTransform {
         let text = plainText.match(replacePattern2);
 
         if(text && link){
-            return `<a href='${link[1]}'>${text[1]}</a>`;
+            return `<a href='${link[1]}' target="_blank">${text[1]}</a>`;
         }
         
        return plainText;
