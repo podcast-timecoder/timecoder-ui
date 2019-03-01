@@ -30,6 +30,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostComponent } from './post/post.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { LinkifyWithTextPipe } from './pipes/linkifyWithText.pipe';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     EpisodeDetailsComponent,
     FilterPipe,
     LinkifyPipe,
+    LinkifyWithTextPipe,
     TrimPipe,
     ExportComponent,
     ProposeThemeComponent,
