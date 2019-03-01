@@ -21,6 +21,7 @@ export class EpisodeDetailsComponent implements OnInit {
   episode: Episode;
   addForm: FormGroup;
   currentUser: User;
+  editableTheme: Theme
 
   constructor(private formBuilder: FormBuilder,
               private router: Router, 
@@ -54,8 +55,13 @@ export class EpisodeDetailsComponent implements OnInit {
 
   onSubmit() {
     this.episodeService.addTheme(this.episode.id, this.addForm.value)
-      .subscribe(data => { this.getEpisodeDetails()
-    });
+      .subscribe(data => { this.getEpisodeDetails() });
+    this.addForm.reset();
+  }
+
+  updateTheme() {
+    this.episodeService.updateTheme(this.editableTheme.id, this.addForm.value)
+      .subscribe(data => { this.getEpisodeDetails()});
     this.addForm.reset();
   }
 
@@ -97,4 +103,11 @@ export class EpisodeDetailsComponent implements OnInit {
     this.episodeService.unlinkThemesToEpisode(id, themeId).subscribe(data => { this.getEpisodeDetails()});
   }
 
+  editTheme(theme: Theme){
+    this.editableTheme =  theme;
+  }
+
+  cancelEdit(){
+    this.editableTheme = null;
+  }
 }

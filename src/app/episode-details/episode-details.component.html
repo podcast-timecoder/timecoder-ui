@@ -45,6 +45,7 @@
           <caption>Theme list</caption>
           <thead class="thead-light">
           <tr>
+            <th>Edit</th>
             <th>Timecode</th>
             <th class="hidden">Title</th>
             <th></th>
@@ -53,7 +54,10 @@
           <tbody>
           <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
             <td>{{ theme.timecode }}</td>
-            <td [innerHTML]="theme.title | linkify"></td>
+            <td id="theme-title-column" [innerHTML]="theme.title | linkify"></td>
+            <td>
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="editTheme(theme)">Edit</button>
+            </td>
             <td>
               <button type="button" class="btn btn-outline-info item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
               <button type="button" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
@@ -71,4 +75,19 @@
       </button>
     </div>
   </div>
+  
+  <div *ngIf="editableTheme" class="edit-navbar">
+        <div class="row">
+          <div class="col-12">
+            <form [formGroup]="addForm" (ngSubmit)="updateTheme()">
+                      <div class="form-group ">
+                            <input formControlName="title" name="title" class="form-control" value="{{ editableTheme.title }}">
+                      </div>  
+                      <button class="btn btn-success btn-block" type="submit">Save</button>
+                      <button class="btn btn-secondary btn-block" type="reset" (click)="cancelEdit()">Cancel</button>         
+            </form>
+          </div>
+        </div>
+  </div>
+  
 </div>
