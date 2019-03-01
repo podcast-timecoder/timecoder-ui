@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class EpisodeService {
-  
   baseUrl: string = `${environment.apiUrl}/episodes`;
   themeBaseUrl = `${environment.apiUrl}/theme`;
 
@@ -69,4 +68,7 @@ export class EpisodeService {
     return this.apiClient.delete(`${this.themeBaseUrl}/${theme.id}/delete`)
   }
 
+  updateTheme(id: number, value: any): any {
+    return this.apiClient.put(`${environment.apiUrl}/theme/${id}/update`, value)
+  }
 }
