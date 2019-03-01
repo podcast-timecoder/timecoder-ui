@@ -26,3 +26,7 @@
   z-index: 1030;
   background-color: #f3f3f3;
 }
+
+.control-block {
+  width: 255px;
+}

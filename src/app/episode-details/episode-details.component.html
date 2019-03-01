@@ -45,23 +45,23 @@
           <caption>Theme list</caption>
           <thead class="thead-light">
           <tr>
-            <th>Edit</th>
             <th>Timecode</th>
             <th class="hidden">Title</th>
             <th></th>
+            <th *ngIf="currentUser.isAdmin"></th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
             <td>{{ theme.timecode }}</td>
-            <td id="theme-title-column" [innerHTML]="theme.title | linkify"></td>
+            <td [innerHTML]="theme.title | linkify"></td>
             <td>
-                <button type="button" class="btn btn-outline-danger btn-sm" (click)="editTheme(theme)">Edit</button>
+              <button type="button" class="btn btn-dark btn-sm item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
             </td>
-            <td>
-              <button type="button" class="btn btn-outline-info item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
-              <button type="button" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
-            </td>
+            <td *ngIf="currentUser.isAdmin" class="control-block">
+                <button type="button" class="btn btn-outline-danger btn-sm item" (click)="editTheme(theme)">Edit</button>
+                <button type="button" class="btn btn-outline-info btn-sm item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
+            </td>  
           </tr>
           </tbody>
         </table>
@@ -81,10 +81,11 @@
           <div class="col-12">
             <form [formGroup]="addForm" (ngSubmit)="updateTheme()">
                       <div class="form-group ">
-                            <input formControlName="title" name="title" class="form-control" value="{{ editableTheme.title }}">
+                        <label for="updateThemeTitle">Update title for theme with id {{ editableTheme.id}}: {{editableTheme.title }}</label>
+                        <input formControlName="title" id="updateThemeTitle" name="title" class="form-control" value="{{ editableTheme.title }}">
                       </div>  
                       <button class="btn btn-success btn-block" type="submit">Save</button>
-                      <button class="btn btn-secondary btn-block" type="reset" (click)="cancelEdit()">Cancel</button>         
+                      <button class="btn btn-secondary btn-block" type="reset" (click)="cancelEdit()">Close</button>         
             </form>
           </div>
         </div>
