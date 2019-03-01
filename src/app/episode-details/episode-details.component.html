@@ -21,7 +21,7 @@
     <div class="col-8">
       <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-2">
-          <input formControlName="title" placeholder="Add theme" name="title" class="form-control" id="themeTitle">
+          <input formControlName="title" placeholder="Add theme or add link as [url](text)" name="title" class="form-control" id="themeTitle">
         </div>
       </form>
     </div>
@@ -53,9 +53,9 @@
           <tbody>
           <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
             <td>{{ theme.timecode }}</td>
-            <td [innerHTML]="theme.title | linkify"></td>
+            <td [innerHTML]="theme.title | linkifyWithText"></td>
             <td>
-              <button type="button" class="btn btn-outline-info item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
+              <button *ngIf="currentUser.isAdmin" type="button" class="btn btn-outline-info item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
               <button type="button" class="btn btn-dark item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
             </td>
           </tr>
