@@ -79,10 +79,16 @@
   <div *ngIf="editableTheme" class="edit-navbar">
         <div class="row">
           <div class="col-12">
-            <form [formGroup]="addForm" (ngSubmit)="updateTheme()">
-                      <div class="form-group ">
-                        <label for="updateThemeTitle">Update title for theme with id {{ editableTheme.id}}: {{editableTheme.title }}</label>
-                        <input formControlName="title" id="updateThemeTitle" name="title" class="form-control" value="{{ editableTheme.title }}">
+            <form [formGroup]="updateForm" (ngSubmit)="updateTheme()">
+                      <div class="row">
+                        <div class="col-1 form-group ">
+                          <label for="updateThemeTimecode">{{ editableTheme.timecode }}</label>
+                          <input type="text" formControlName="timecode" id="updateThemeTimecode" name="timecode" class="form-control" value="{{ editableTheme.timecode }}" required>
+                        </div>
+                        <div class="col-12 form-group ">
+                          <label for="updateThemeTitle">Title: {{editableTheme.title }}</label>
+                          <input type="text" formControlName="title" id="updateThemeTitle" name="title" class="form-control" value="{{ editableTheme.title }}" required>
+                        </div>
                       </div>  
                       <button class="btn btn-success btn-block" type="submit">Save</button>
                       <button class="btn btn-secondary btn-block" type="reset" (click)="cancelEdit()">Close</button>         

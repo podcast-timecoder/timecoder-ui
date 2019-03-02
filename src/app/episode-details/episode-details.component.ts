@@ -23,6 +23,8 @@ export class EpisodeDetailsComponent implements OnInit {
   currentUser: User;
   editableTheme: Theme
 
+  updateForm: FormGroup;
+
   constructor(private formBuilder: FormBuilder,
               private router: Router, 
               private route: ActivatedRoute, 
@@ -38,6 +40,12 @@ export class EpisodeDetailsComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       title: ['', Validators.required]
     });
+
+    this.updateForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      timecode: ['', Validators.required]
+    });
+
     this.currentUser = this.sessionUserService.getSessionUser();
     this.getEpisodeDetails();
     this.connect();
@@ -60,9 +68,9 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   updateTheme() {
-    this.episodeService.updateTheme(this.editableTheme.id, this.addForm.value)
+    this.episodeService.updateTheme(this.editableTheme.id, this.updateForm.value)
       .subscribe(data => { this.getEpisodeDetails()});
-    this.addForm.reset();
+    //this.updateForm.reset();
   }
 
   track(episode:  Episode, theme: Theme) {
@@ -105,6 +113,9 @@ export class EpisodeDetailsComponent implements OnInit {
 
   editTheme(theme: Theme){
     this.editableTheme =  theme;
+
+    this.updateForm.controls['timecode'].setValue(this.editableTheme.timecode);
+    this.updateForm.controls['title'].setValue(this.editableTheme.title);
   }
 
   cancelEdit(){
