@@ -50,7 +50,7 @@
 }
 
 .item a {
-    color: #ffc107
+    color: orange;
 }
 
 .share li a {
@@ -73,4 +73,13 @@
 
 .post-name{
     word-break: break-word;
+}
+
+.player{
+    border: 1px solid orange;
+    padding-top: 15px;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
 }
