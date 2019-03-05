@@ -26,7 +26,10 @@
               <ul *ngFor="let theme of episode?.themeList" class="list-group">
                 <li *ngIf="theme.timecode">
                   <span [innerHTML]="theme.title | linkifyWithText"></span>
-                  <span> - <em><a href="javascript:void(0)" (click)="seekToTime(theme.timecode)">{{theme.timecode}}</a></em></span>
+                  <span> - <em>
+                    <a href="javascript:void(0)" (click)="seekToTime(theme.timecode)" class="them-time">{{theme.timecode}}</a>
+                  </em>
+                  </span>
                 </li>
               </ul>
             </div>

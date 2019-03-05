@@ -38,7 +38,6 @@ export class PostDetailsComponent implements OnInit {
       this.episode = data['episode'];
       this.patronList = data['patrons'];
       this.initScWidget();
-      console.log(this.post.link)
     });
 
     this.currentUser = this.sessionUserService.getSessionUser()
