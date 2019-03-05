@@ -26,14 +26,14 @@
               <ul *ngFor="let theme of episode?.themeList" class="list-group">
                 <li *ngIf="theme.timecode">
                   <span [innerHTML]="theme.title | linkifyWithText"></span>
-                  <span> - <em>{{theme.timecode}}</em></span>
+                  <span> - <em><a href="javascript:void(0)" (click)="seekToTime(theme.timecode)">{{theme.timecode}}</a></em></span>
                 </li>
               </ul>
             </div>
 
-            
             <div class="player mb-3">
-                <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(post?.link)"></div>
+              <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" [src]="post?.link | safeResourceUrl">
+              </iframe>
             </div>
 
             <div class="mb-2">
