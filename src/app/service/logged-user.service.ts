@@ -9,8 +9,13 @@ export class LoggedUserService {
 
   constructor() { }
 
-  getSessionUser(): User{
-    const decoded = jwt_decode(localStorage.getItem("access_token"));
+  getSessionUser(): User {
+    const token = localStorage.getItem("access_token");
+    if(!token){
+      return null;
+    }
+
+    const decoded = jwt_decode();
     if (!decoded || decoded.exp === undefined) {
       return null;
     }
