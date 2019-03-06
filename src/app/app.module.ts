@@ -31,6 +31,7 @@ import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostComponent } from './post/post.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { LinkifyWithTextPipe } from './pipes/linkifyWithText.pipe';
+import {SafeResourceUrlPipe} from "./pipes/safeResourceUrl.pipe";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { LinkifyWithTextPipe } from './pipes/linkifyWithText.pipe';
     LinkifyPipe,
     LinkifyWithTextPipe,
     TrimPipe,
+    SafeResourceUrlPipe,
     ExportComponent,
     ProposeThemeComponent,
     LoginComponent,
