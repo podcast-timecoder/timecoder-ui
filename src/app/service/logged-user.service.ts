@@ -15,7 +15,7 @@ export class LoggedUserService {
       return null;
     }
 
-    const decoded = jwt_decode();
+    const decoded = jwt_decode(token);
     if (!decoded || decoded.exp === undefined) {
       return null;
     }
