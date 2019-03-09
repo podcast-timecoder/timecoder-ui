@@ -70,7 +70,7 @@ export class EpisodeDetailsComponent implements OnInit {
   updateTheme() {
     this.episodeService.updateTheme(this.editableTheme.id, this.updateForm.value)
       .subscribe(data => { this.getEpisodeDetails()});
-    //this.updateForm.reset();
+    this.editableTheme = null;
   }
 
   track(episode:  Episode, theme: Theme) {
