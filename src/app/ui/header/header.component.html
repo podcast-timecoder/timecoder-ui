@@ -3,7 +3,7 @@
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
           <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
-          <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</button>
+          <a href="/patrons-list" *ngIf="isLogged() && isAdmin()" role="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</a>
           <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="users()">Users</button>
           <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="topics()">Topics</button>
       </div>
