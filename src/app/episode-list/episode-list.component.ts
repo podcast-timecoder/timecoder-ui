@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { User } from '../model/user';
 import { LoggedUserService } from '../service/logged-user.service';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { filter, switchMapTo, take } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-episode-list',
@@ -17,12 +20,13 @@ export class EpisodeListComponent implements OnInit {
   episodes: Episode[];
   selectedEpisode: Episode;
   addForm: FormGroup;
-  currentUser: User
-  added: boolean
-  error: Object
+  currentUser: User;
+  added: boolean;
+  error: Object;
 
-  constructor(private formBuilder: FormBuilder, 
-              private router: Router, 
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private dialog: MatDialog,
               private episodeService: EpisodeService,
               private sessionUserService: LoggedUserService) { }
 
@@ -34,17 +38,17 @@ export class EpisodeListComponent implements OnInit {
     this.currentUser = this.sessionUserService.getSessionUser();
 
     this.episodeService.getAllEpisodes()
-      .subscribe(data => this.episodes = data)
+      .subscribe(data => this.episodes = data);
   }
 
-  showDetails(episode: Episode){
+  showDetails(episode: Episode) {
     this.router.navigate([`episode-details/${episode.id}`]);
   }
 
   onSelect(episode: Episode): void {
     this.selectedEpisode = episode;
     this.getAllEpisodes();
-    this.showDetails(episode);  
+    this.showDetails(episode);
   }
 
   onSubmit() {
@@ -52,10 +56,10 @@ export class EpisodeListComponent implements OnInit {
       .subscribe(data => {
         this.addForm.reset();
         this.getAllEpisodes();
-        this.added = true; 
-      }, 
+        this.added = true;
+      },
       error => {
-        this.error = error
+        this.error = error;
       });
   }
 
@@ -63,14 +67,23 @@ export class EpisodeListComponent implements OnInit {
     this.router.navigate(['add-episode']);
   }
 
-  removeEpisode(episode: Episode){
-     this.episodeService.removeEpisode(episode.id).subscribe(data => {
+  removeEpisode(episode: Episode) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: `Do you confirm the deletion of episode ${episode.name}?`
+    });
+    dialogRef.afterClosed().pipe(
+      take(1),
+      filter(Boolean),
+      switchMapTo(this.episodeService.removeEpisode(episode.id))
+    )
+     .subscribe(data => {
         this.getAllEpisodes();
      });
   }
 
   getAllEpisodes(): void {
     this.episodeService.getAllEpisodes()
-    .subscribe(data => this.episodes = data)
+      .subscribe(data => this.episodes = data);
   }
 }

@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EpisodeDetailsComponent } from './episode-details/episode-details.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatDialogModule } from '@angular/material';
 import { UiModule } from './ui/ui.module';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ExportComponent } from './export/export.component';
@@ -31,7 +31,8 @@ import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostComponent } from './post/post.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { LinkifyWithTextPipe } from './pipes/linkifyWithText.pipe';
-import {SafeResourceUrlPipe} from "./pipes/safeResourceUrl.pipe";
+import { SafeResourceUrlPipe } from './pipes/safeResourceUrl.pipe';
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {SafeResourceUrlPipe} from "./pipes/safeResourceUrl.pipe";
     PostDetailsComponent,
     PostEditComponent,
     PostComponent,
-    SidenavComponent
+    SidenavComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +72,16 @@ import {SafeResourceUrlPipe} from "./pipes/safeResourceUrl.pipe";
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatDialogModule,
     UiModule
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, UserService],
+  entryComponents: [
+    ConfirmationDialogComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
