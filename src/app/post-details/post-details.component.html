@@ -28,7 +28,7 @@
               </ul>
             </div>
 
-            <h6 *ngIf="post?.description">Темы:</h6>
+            <h6 *ngIf="post?.description">Полезное:</h6>
             <p class="card-text mb-3" [innerHTML]="post?.description | linkifyWithText"></p>
 
             <div class="player mb-3">
@@ -55,7 +55,7 @@
               </div>
               <div class="mb-3"></div>
               <div>
-                  <span class="item"><h6>Спасибо патронам:</h6></span>
+                  <span class="item"><h6>Нас поддерживают:</h6></span>
               </div>
               <div>
                 <span *ngFor="let patron of patronList?.patrons" class="comma-list">{{ patron.fullName }}</span>

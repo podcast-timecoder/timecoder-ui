@@ -69,7 +69,7 @@ export class EpisodeListComponent implements OnInit {
 
   removeEpisode(episode: Episode) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '350px',
+      width: '365px',
       data: `Do you confirm the deletion of episode ${episode.name}?`
     });
     dialogRef.afterClosed().pipe(
