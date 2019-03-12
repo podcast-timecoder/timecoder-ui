@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EpisodeService } from '../service/episode.service';
-import { Episode } from '../model/episode';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { map, share } from 'rxjs/operators';
+import { interval } from 'rxjs';
+import { EpisodeService } from '../service/episode.service';
+import { Episode } from '../model/episode';
 import { Theme } from '../model/theme';
-import { filter } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from '../model/user';
 import { LoggedUserService } from '../service/logged-user.service';
@@ -17,24 +18,20 @@ import { LoggedUserService } from '../service/logged-user.service';
 })
 export class EpisodeDetailsComponent implements OnInit {
 
-  public now: Date = new Date();
   episode: Episode;
   addForm: FormGroup;
   currentUser: User;
-  editableTheme: Theme
-
+  editableTheme: Theme;
   updateForm: FormGroup;
 
+  now$ = interval(1000).pipe(map(x => new Date()), share());
+
   constructor(private formBuilder: FormBuilder,
-              private router: Router, 
-              private route: ActivatedRoute, 
+              private router: Router,
+              private route: ActivatedRoute,
               private episodeService: EpisodeService,
-              private sessionUserService: LoggedUserService, 
-              private location: Location) {
-                setInterval(() => {
-                  this.now = new Date();
-                }, 1);
-               }
+              private sessionUserService: LoggedUserService,
+              private location: Location) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({

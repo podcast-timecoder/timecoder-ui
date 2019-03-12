@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col">
-      Current: {{ now | date:'hh:mm:ss EEEE dd LLL' }}
+      Current: {{ now$ | async | date:'hh:mm:ss EEEE dd LLL' }}
     </div>
   </div>
   <div class="row mb-2">
