@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { map, share } from 'rxjs/operators';
+import { map, share, take, filter, switchMapTo } from 'rxjs/operators';
 import { interval } from 'rxjs';
 import { EpisodeService } from '../service/episode.service';
 import { Episode } from '../model/episode';
@@ -10,6 +10,8 @@ import { Theme } from '../model/theme';
 import { environment } from '../../environments/environment';
 import { User } from '../model/user';
 import { LoggedUserService } from '../service/logged-user.service';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-episode-details',
@@ -31,7 +33,8 @@ export class EpisodeDetailsComponent implements OnInit {
               private route: ActivatedRoute,
               private episodeService: EpisodeService,
               private sessionUserService: LoggedUserService,
-              private location: Location) { }
+              private location: Location,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -75,7 +78,33 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   startEpisode(episode: Episode) {
-    this.episodeService.startEpisode(episode).subscribe(data => { this.getEpisodeDetails() });
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '600px',
+      data: `
+      <h5>Before episode start please do the following:</h5>
+      
+      <ul>
+        <li>check memory space on recorder</li>
+        <li>start recording</li>
+        <li>start stream</li>
+      </ul>
+      
+      <h5 class="text-center">Are you ready to start episode ${episode.name}?</h5>
+      `
+    });
+    dialogRef.afterClosed().pipe(
+      take(1),
+      filter(Boolean),
+      switchMapTo(this.episodeService.startEpisode(episode))
+    )
+     .subscribe(data => {
+      this.getEpisodeDetails();
+     });
+
+
+
+
+    //this.episodeService.startEpisode(episode).subscribe(data => { this.getEpisodeDetails() });
   }
 
   stopEpisode(episode: Episode) {
