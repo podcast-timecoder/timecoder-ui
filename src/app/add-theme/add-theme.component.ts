@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { EpisodeService } from '../service/episode.service';
 import { Theme } from '../model/theme';
 import { AuthService } from '../service/auth.service';
+import { UserService } from '../service/user.service';
+import { LoggedUserService } from '../service/logged-user.service';
 
 @Component({
   selector: 'app-propose-theme',
@@ -22,7 +24,8 @@ export class ProposeThemeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
               private router: Router, 
               private episodeService: EpisodeService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private sessionUserService: LoggedUserService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -61,6 +64,10 @@ export class ProposeThemeComponent implements OnInit {
 
   isAuthorized(){
     return this.authService.isAuthenticated()
+  }
+
+  isAdmin(): boolean{
+    return this.sessionUserService.getSessionUser().isAdmin
   }
 
   deleteTopic(theme: Theme){
