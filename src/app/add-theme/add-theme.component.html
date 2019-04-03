@@ -14,6 +14,9 @@
           </div>
         </div>
         <button type="submit" class="btn btn-outline-success">Add topic</button>
+        <div *ngIf="added" class="valid-feedback">
+          Your theme sucessfully added. Thank you!
+        </div>
       </form>
     </div>
   </div>

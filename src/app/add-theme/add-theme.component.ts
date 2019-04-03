@@ -6,6 +6,9 @@ import { Theme } from '../model/theme';
 import { AuthService } from '../service/auth.service';
 import { UserService } from '../service/user.service';
 import { LoggedUserService } from '../service/logged-user.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { take, filter, switchMapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'app-propose-theme',
@@ -22,7 +25,8 @@ export class ProposeThemeComponent implements OnInit {
   added: boolean = false;
 
   constructor(private formBuilder: FormBuilder, 
-              private router: Router, 
+              private router: Router,
+              private dialog: MatDialog, 
               private episodeService: EpisodeService,
               private authService: AuthService,
               private sessionUserService: LoggedUserService) { }
@@ -47,6 +51,7 @@ export class ProposeThemeComponent implements OnInit {
 
     this.episodeService.addFreeTheme(this.addForm.value)
       .subscribe(data => { 
+        this.added = true;
         this.addForm.reset() 
         this.getAllThemesWithoutEpisode();
         this.submitted = false;
@@ -55,7 +60,9 @@ export class ProposeThemeComponent implements OnInit {
         this.submitted = false;
         console.error(error)
         this.error = error;
+        this.added = false;
       });
+      setTimeout(() => this.added = false, 3000)
   }
 
   getAllThemesWithoutEpisode() {
@@ -71,8 +78,18 @@ export class ProposeThemeComponent implements OnInit {
   }
 
   deleteTopic(theme: Theme){
-    this.episodeService.deleteTopic(theme).subscribe( data => {
-      this.getAllThemesWithoutEpisode();
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '700px',
+      data: `Do you confirm the deletion of theme ${theme.title}?`
     });
+
+    dialogRef.afterClosed().pipe(
+      take(1),
+      filter(Boolean),
+      switchMapTo(this.episodeService.deleteTopic(theme))
+    )
+    .subscribe(data => {
+      this.getAllThemesWithoutEpisode();
+     });
   }
 }
