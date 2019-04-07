@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import {PatronList} from "../model/patron.list";
-import {Post} from "../model/post";
+import { Post, PostDetailsResponse } from '../model/post';
 import {Episode} from "../model/episode";
 import { Page } from '../model/paged.post';
 
@@ -18,8 +18,8 @@ export class PostService {
     return this.http.get<Page>(`${this.baseUrl}/posts?orderBy=DESC&pageNumber=0&pageSize=5&sortBy=id`)
   }
 
-  getPostById(id: Number): Observable<Post> {
-    return this.http.get<Post>(this.baseUrl + "/posts/" + id)
+  getPostById(id: Number): Observable<PostDetailsResponse> {
+    return this.http.get<PostDetailsResponse>(this.baseUrl + "/posts/" + id)
   }
 
   addPost(post: Post): any {

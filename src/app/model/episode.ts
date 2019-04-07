@@ -1,8 +1,8 @@
 import { Theme } from "./theme";
 
 export class Episode {
-    id: Number;
-    name: String;
+    id: number;
+    name: string;
     themeList: Theme[];
     started: boolean;
     startTime: Date;
