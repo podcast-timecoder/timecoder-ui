@@ -1,6 +1,6 @@
 export class User {
-    id: Number
-    username: string
-    name: string
-    isAdmin: boolean
+    id: number;
+    username: string;
+    name: string;
+    isAdmin: boolean;
 }

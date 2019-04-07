@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import {Post} from "../model/post";
 import {PostService} from "../service/post.service";
 import {EpisodeService} from "../service/episode.service";
@@ -27,6 +28,7 @@ export class PostDetailsComponent implements OnInit {
               private episodeService: EpisodeService,
               private patronService: PatronService,
               private activatedRoute: ActivatedRoute,
+              private meta: Meta,
               private router: Router,
               private sessionUserService: LoggedUserService) {
   }
@@ -34,10 +36,16 @@ export class PostDetailsComponent implements OnInit {
   ngOnInit() {
     const id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.postService.getPostById(id).subscribe(data => {
-      this.post = data['post'];
-      this.episode = data['episode'];
-      this.patronList = data['patrons'];
+      this.post = data.post;
+      this.episode = data.episode;
+      this.patronList = data.patrons;
       this.initScWidget();
+      // update meta tags for post
+      this.meta.updateTag({name: 'description', content: data.post.shortDescription});
+      this.meta.updateTag({name: 'og:description', content: data.post.shortDescription});
+      this.meta.removeTag('itemprop="description"');
+      this.meta.updateTag({itemprop: 'description', content: data.post.shortDescription});
+      this.meta.updateTag({name: 'keyword', content: 'testing, automation, features, java, c#'}); // data.post.keywords
     });
 
     this.currentUser = this.sessionUserService.getSessionUser()
