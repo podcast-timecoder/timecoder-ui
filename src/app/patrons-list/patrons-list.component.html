@@ -15,7 +15,10 @@
           <th class="hidden">№</th>
           <th class="hidden">Full Name</th>
           <th class="hidden">Amount</th>
+          <th class="hidden">Total amount</th>
           <th class="hidden">Email</th>
+          <th class="hidden">Rewards</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -23,8 +26,13 @@
           <tr [ngClass]="{'not-read' : !isShow(patron.amount)}">
             <td>{{i + 1}}</td>
             <td>{{ patron.fullName }}</td>
-            <td>{{ transformPrice(patron.amount) | currency:' ':false:'1.1'}} $</td>
+            <td>{{ transformPrice(patron.amount) | currency:' ':false:'1.1'}}$</td>
+            <td>{{ transformPrice(patron.totalAmount) | currency:' ':false:'1.1'}}$</td>
             <td>{{ patron.email }}</td>
+            <td>{{ patron.reward }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-danger item" (click)="addReward(patron)">Add reward</button>
+            </td>
           </tr>
         </ng-container>
         </tbody>
