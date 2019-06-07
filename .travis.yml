@@ -16,7 +16,6 @@ after_script:
   - docker images
 
 before_deploy:
-  - docker tag "$IMAGE_NAME:latest" "$IMAGE_NAME:${TRAVIS_TAG}"
   - docker images
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 
