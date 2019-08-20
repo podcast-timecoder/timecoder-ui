@@ -1,5 +1,6 @@
   <div class="row">
-    <div class="col">
+  
+    <div class="col-12">
         <form *ngIf="currentUser.isAdmin" [formGroup]="addForm" (ngSubmit)="onSubmit()" class="add-episode-form">
             <div class="form-row">
               <div class="col-8">
@@ -16,18 +17,18 @@
               </div>
             </div>
         </form>
-    </div>
-    <div class="col">
+
         <ul *ngFor="let episode of episodes" class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="{'active': episode?.id == selectedEpisode?.id}">
-              <span (click)="onSelect(episode)" class="episode-name justify-content-between"> 
-                {{ episode.name }}
-                <span class="badge badge-light badge-pill">{{ (episode.themeList | filter: true).length }}/{{ episode.themeList.length }}</span> 
-              </span>
-              <a *ngIf="currentUser.isAdmin" class="btn remove-icon" (click)="removeEpisode(episode)">
-                <i style="color: red" class="fa fa-remove"></i>
-              </a>  
-            </li>
-        </ul>  
+          <li class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="{'active': episode?.id == selectedEpisode?.id}">
+            <span (click)="onSelect(episode)" class="episode-name justify-content-between"> 
+              {{ episode.name }}
+              <span class="badge badge-light badge-pill">{{ (episode.themeList | filter: true).length }}/{{ episode.themeList.length }}</span> 
+            </span>
+            <a *ngIf="currentUser.isAdmin" class="btn remove-icon" (click)="removeEpisode(episode)">
+              <i style="color: red" class="fa fa-remove"></i>
+            </a>
+          </li>
+      </ul> 
     </div>
+  
   </div>
