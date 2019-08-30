@@ -17,7 +17,7 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users/list`)
   }
-\
+
   changePassword(id: any, body: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/user/${id}/changePassword`, body)
   }
