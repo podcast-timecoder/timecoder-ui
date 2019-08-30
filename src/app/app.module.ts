@@ -33,6 +33,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { LinkifyWithTextPipe } from './pipes/linkifyWithText.pipe';
 import { SafeResourceUrlPipe } from './pipes/safeResourceUrl.pipe';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
     PostEditComponent,
     PostComponent,
     SidenavComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

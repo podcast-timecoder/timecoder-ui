@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
+  
   constructor(private http: HttpClient) { }
   baseUrl: string = `${environment.apiUrl}`
 
@@ -15,5 +16,9 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users/list`)
+  }
+\
+  changePassword(id: any, body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/user/${id}/changePassword`, body)
   }
 }

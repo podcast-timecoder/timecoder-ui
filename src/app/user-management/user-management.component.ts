@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserManagementComponent implements OnInit {
 
   userList: User[]
-
+  
   constructor(private userService: UserService,
               private router: Router) { }
 
@@ -25,4 +25,7 @@ export class UserManagementComponent implements OnInit {
       this.router.navigate(['add-user']);
   }
 
+  onSelect(user: User): void {
+    this.router.navigate([`change-password/${user.id}`]);
+  }
 }

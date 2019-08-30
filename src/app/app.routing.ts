@@ -17,6 +17,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import {PostEditComponent} from "./post-edit/post-edit.component";
 import {PostComponent} from "./post/post.component";
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
   { path: 'patrons-list', component: PatronsListComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'post-edit/:id', component: PostEditComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'post', component: PostComponent, canActivate: [AuthGuard, AdminGuard] },
-
+  { path: 'change-password/:id', component: ChangePasswordComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: '**', component: HomePageComponent,
     data: { metaDescription: 'QAGuild — первый подкаст про тестирование, автоматизацию в тестировании и просто за жизнь.' }  },
 ]
