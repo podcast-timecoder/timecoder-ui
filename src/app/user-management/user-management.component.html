@@ -14,6 +14,7 @@
               <th class="hidden">Name</th>
               <th class="hidden">Login</th>
               <th>Email</th>
+              <th>ROLE</th>
             </tr>
           </thead>
             <tbody>
@@ -22,6 +23,7 @@
                 <td>{{ user.name }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.roles[0].name}}</td>
               </tr>
             </tbody>
       </table>
