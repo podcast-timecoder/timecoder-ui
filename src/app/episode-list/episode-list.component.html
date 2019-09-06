@@ -18,8 +18,8 @@
             </div>
         </form>
 
-        <ul *ngFor="let episode of episodes" class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="{'active': episode?.id == selectedEpisode?.id}">
+        <ul class="list-group mb-4">
+          <li *ngFor="let episode of episodes"  class="mb-2 list-group-item d-flex justify-content-between align-items-center" [ngClass]="{'active': episode?.id == selectedEpisode?.id}">
             <span (click)="onSelect(episode)" class="episode-name justify-content-between"> 
               {{ episode.name }}
               <span class="badge badge-light badge-pill">{{ (episode.themeList | filter: true).length }}/{{ episode.themeList.length }}</span> 
@@ -28,7 +28,6 @@
               <i style="color: red" class="fa fa-remove"></i>
             </a>
           </li>
-      </ul> 
+        </ul> 
     </div>
-  
   </div>

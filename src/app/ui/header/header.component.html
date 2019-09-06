@@ -1,17 +1,26 @@
-<nav class="navbar navbar-dark bg-dark mb-2">
+<nav class="navbar navbar-dark navbar-expand-md bg-dark mb-2">
+
     <a class="navbar-brand" href="/">QAGuild</a>
-    <div class="navbar-expand mr-auto">
-      <div class="navbar-nav">
-          <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="goHome()">Home</button>
-          <a href="/patrons-list" *ngIf="isLogged() && isAdmin()" role="button" class="btn btn-outline-light mx-2" (click)="patronsList()">Patrons</a>
-          <button *ngIf="isLogged() && isAdmin()" type="button" class="btn btn-outline-light mx-2" (click)="users()">Users</button>
-          <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="topics()">Topics</button>
-      </div>
-    </div>
-    <div class="navbar-expand ml-auto navbar-nav">
-      <div class="navbar-nav">
-        <a *ngIf="isLogged()" class="nav-item nav-link">{{ getCurrentUserName() }}</a>
-        <button *ngIf="isLogged()" type="button" class="btn btn-outline-light mx-2" (click)="logout()">Logout</button>
-      </div>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <button *ngIf="isLogged()" type="button" class="custom btn btn-outline-light mx-1 m-1" (click)="goHome()">Home</button>
+            </li>
+            <li class="nav-item">
+                <a href="/patrons-list" *ngIf="isLogged() && isAdmin()" role="button" class="custom btn btn-outline-light mx-1 m-1" (click)="patronsList()">Patrons</a>
+            </li>
+            <li class="nav-item">
+                <button *ngIf="isLogged() && isAdmin()" type="button" class="custom btn btn-outline-light mx-1 m-1" (click)="users()">Users</button>
+            </li>
+            <li class="nav-item">
+                <button *ngIf="isLogged()" type="button" class="custom btn btn-outline-light mx-1 m-1" (click)="topics()">Topics</button>
+            </li>
+      </ul>
+      <button *ngIf="isLogged()" type="button" class="custom btn btn-outline-light mx-1 m-1" (click)="logout()">Logout</button>
     </div>
   </nav>
