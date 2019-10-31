@@ -27,8 +27,8 @@ export class HomePageComponent implements OnInit {
     this.router.navigate([`post-details/${post.id}`]);
   }
 
-  isLogged(): boolean {
-    return this.authSerice.isAuthenticated()
-  }
+  // isLogged(): boolean {
+  //   return this.authSerice.isAuthenticated()
+  // }
 
 }

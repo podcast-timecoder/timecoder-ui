@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear();
+    this.authSerice.logout();
     this.router.navigate(["login"]);
   }
 

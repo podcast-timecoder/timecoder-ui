@@ -39,7 +39,7 @@
               {{ theme.createdAt | date:'hh:mm:ss EEEE dd LLL'}}
             </td>
             <td *ngIf="isAdmin()" class="text-center">
-              <button class="btn btn-sm btn-danger" (click)="deleteTopic(theme)">DELETE</button>
+              <button class="btn btn-sm btn-danger" id="deleteFreeTheme" (click)="deleteTopic(theme)">DELETE</button>
             </td>
           </tr>
           </tbody>

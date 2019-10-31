@@ -28,12 +28,12 @@
   </div>
   <div *ngIf="currentUser.isAdmin" class="row mb-3">
     <div class="col-6">
-      <button type="button" class="btn btn-warning btn-block" [disabled]='episode.started'
+      <button type="button" id="startEpisode" class="btn btn-warning btn-block" [disabled]='episode.started'
               (click)="startEpisode(episode)">Start episode
       </button>
     </div>
     <div class="col-6">
-      <button type="button" class="btn btn-danger btn-block" [disabled]='!episode.started'
+      <button type="button" id="stopEpisode" class="btn btn-danger btn-block" [disabled]='!episode.started'
               (click)="stopEpisode(episode)">Stop episode
       </button>
     </div>
@@ -56,11 +56,11 @@
             <td>{{ theme.timecode }}</td>
             <td [innerHTML]="theme.title | linkifyWithText"></td>
             <td>
-              <button type="button" class="btn btn-dark btn-sm item" [disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
+              <button type="button" class="btn btn-dark btn-sm item" id="track-{{theme.id}}"[disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
             </td>
             <td *ngIf="currentUser.isAdmin" class="control-block">
-                <button type="button" class="btn btn-outline-danger btn-sm item" (click)="editTheme(theme)">Edit</button>
-                <button type="button" class="btn btn-outline-info btn-sm item" (click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
+                <button type="button" class="btn btn-outline-danger btn-sm item" id="editTheme" (click)="editTheme(theme)">Edit</button>
+                <button type="button" class="btn btn-outline-info btn-sm item" id="unlinkTheme"(click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
             </td>
           </tr>
           </tbody>

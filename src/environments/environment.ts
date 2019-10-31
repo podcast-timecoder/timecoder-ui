@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://qaguild.online/api"
+  apiUrl: "http://localhost:8086"
 };
 
 /*

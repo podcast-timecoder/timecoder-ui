@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.clear();
   }
 
   public isAuthenticated(): boolean {
