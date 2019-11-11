@@ -38,3 +38,5 @@ testem.log
 .DS_Store
 Thumbs.db
 *.iml
+.nyc_output/
+coverage/
