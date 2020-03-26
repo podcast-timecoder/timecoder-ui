@@ -1,7 +1,7 @@
 .item {
-    margin-left: 15px;
-    width: 100px;
-    float:right;
+  margin-left: 15px;
+  width: 100px;
+  float: right;
 }
 
 .them-name {
@@ -13,7 +13,7 @@
 }
 
 .them-name:hover {
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
 
@@ -29,4 +29,14 @@
 
 .control-block {
   width: 255px;
+}
+
+.on-air {
+  background-color: burlywood;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.on-air-time {
+  padding-left: 3px;
 }

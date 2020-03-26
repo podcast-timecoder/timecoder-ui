@@ -1,40 +1,74 @@
 <div *ngIf="episode">
   <div *ngIf="currentUser.isAdmin" class="row">
     <div class="col mb-2">
-      <button type="button" class="btn btn-block btn-outline-info" (click)="linkThemes(episode)">Link themes</button>
+      <button
+        type="button"
+        class="btn btn-block btn-outline-info"
+        (click)="linkThemes(episode)"
+      >
+        Link themes
+      </button>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      Current: {{ now$ | async | date:'hh:mm:ss EEEE dd LLL' }}
+      Current: {{ now$ | async | date: "hh:mm:ss EEEE dd LLL" }}
     </div>
   </div>
-  <div class="row mb-2">
+  <!-- <div class="row mb-2">
     <div class="col">
-      Started: {{ episode.startTime | date:'hh:mm:ss EEEE dd LLL'}}
+      Started: {{ episode.startTime | date: "hh:mm:ss EEEE dd LLL" }}
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col">
+      <span class="on-air">
+        On AIR:
+      </span>
+      <span class="on-air-time">
+        {{ diff | async | date: "H:mm:ss":"UTC" }}
+      </span>
     </div>
   </div>
   <div class="row mb-2">
     <div class="col-4">
-      <h2>{{episode.name}}</h2>
+      <h2>{{ episode.name }}</h2>
     </div>
     <div class="col-8">
       <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-2">
-          <input formControlName="title" placeholder="Add theme or add link as [url](text)" name="title" class="form-control" id="themeTitle">
+          <input
+            formControlName="title"
+            placeholder="Add theme or add link as [url](text)"
+            name="title"
+            class="form-control"
+            id="themeTitle"
+          />
         </div>
       </form>
     </div>
   </div>
   <div *ngIf="currentUser.isAdmin" class="row mb-3">
     <div class="col-6">
-      <button type="button" id="startEpisode" class="btn btn-warning btn-block" [disabled]='episode.started'
-              (click)="startEpisode(episode)">Start episode
+      <button
+        type="button"
+        id="startEpisode"
+        class="btn btn-warning btn-block"
+        [disabled]="episode.started"
+        (click)="startEpisode(episode)"
+      >
+        Start episode
       </button>
     </div>
     <div class="col-6">
-      <button type="button" id="stopEpisode" class="btn btn-danger btn-block" [disabled]='!episode.started'
-              (click)="stopEpisode(episode)">Stop episode
+      <button
+        type="button"
+        id="stopEpisode"
+        class="btn btn-danger btn-block"
+        [disabled]="!episode.started"
+        (click)="stopEpisode(episode)"
+      >
+        Stop episode
       </button>
     </div>
   </div>
@@ -42,27 +76,54 @@
     <div class="col">
       <div class="table-responsive">
         <table class="table table-hover">
-          <caption>Theme list</caption>
+          <caption>
+            Theme list
+          </caption>
           <thead class="thead-light">
-          <tr>
-            <th>Timecode</th>
-            <th class="hidden">Title</th>
-            <th></th>
-            <th *ngIf="currentUser.isAdmin"></th>
-          </tr>
+            <tr>
+              <th>Timecode</th>
+              <th class="hidden">Title</th>
+              <th></th>
+              <th *ngIf="currentUser.isAdmin"></th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let theme of episode?.themeList" [class.table-success]="theme.passed">
-            <td>{{ theme.timecode }}</td>
-            <td [innerHTML]="theme.title | linkifyWithText"></td>
-            <td>
-              <button type="button" class="btn btn-dark btn-sm item" id="track-{{theme.id}}"[disabled]="!episode.started" (click)="track(episode, theme)">Track</button>
-            </td>
-            <td *ngIf="currentUser.isAdmin" class="control-block">
-                <button type="button" class="btn btn-outline-danger btn-sm item" id="editTheme" (click)="editTheme(theme)">Edit</button>
-                <button type="button" class="btn btn-outline-info btn-sm item" id="unlinkTheme"(click)="unlinkThemes(episode.id, theme.id)">Unlink</button>
-            </td>
-          </tr>
+            <tr
+              *ngFor="let theme of episode?.themeList"
+              [class.table-success]="theme.passed"
+            >
+              <td>{{ theme.timecode }}</td>
+              <td [innerHTML]="theme.title | linkifyWithText"></td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-dark btn-sm item"
+                  id="track-{{ theme.id }}"
+                  [disabled]="!episode.started"
+                  (click)="track(episode, theme)"
+                >
+                  Track
+                </button>
+              </td>
+              <td *ngIf="currentUser.isAdmin" class="control-block">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger btn-sm item"
+                  id="editTheme"
+                  (click)="editTheme(theme)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-info btn-sm item"
+                  id="unlinkTheme"
+                  (click)="unlinkThemes(episode.id, theme.id)"
+                >
+                  Unlink
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -70,31 +131,61 @@
   </div>
   <div *ngIf="currentUser.isAdmin" class="row mb-5">
     <div class="col-12 mb-5">
-      <button type="button" class="btn btn-info btn-sm btn-block" *ngIf='isFinished(episode)' (click)="export(episode)">
+      <button
+        type="button"
+        class="btn btn-info btn-sm btn-block"
+        *ngIf="isFinished(episode)"
+        (click)="export(episode)"
+      >
         Export this episode
       </button>
     </div>
   </div>
-  
+
   <div *ngIf="editableTheme" class="edit-navbar">
-        <div class="row">
-          <div class="col-12">
-            <form [formGroup]="updateForm" (ngSubmit)="updateTheme()">
-                      <div class="row">
-                        <div class="col-1 form-group ">
-                          <label for="updateThemeTimecode">{{ editableTheme.timecode }}</label>
-                          <input type="text" formControlName="timecode" id="updateThemeTimecode" name="timecode" class="form-control" value="{{ editableTheme.timecode }}" required>
-                        </div>
-                        <div class="col-12 form-group ">
-                          <label for="updateThemeTitle">Title: {{editableTheme.title }}</label>
-                          <input type="text" formControlName="title" id="updateThemeTitle" name="title" class="form-control" value="{{ editableTheme.title }}" required>
-                        </div>
-                      </div>  
-                      <button class="btn btn-success btn-block" type="submit">Save</button>
-                      <button class="btn btn-secondary btn-block" type="reset" (click)="cancelEdit()">Close</button>         
-            </form>
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="updateForm" (ngSubmit)="updateTheme()">
+          <div class="row">
+            <div class="col-1 form-group ">
+              <label for="updateThemeTimecode">{{
+                editableTheme.timecode
+              }}</label>
+              <input
+                type="text"
+                formControlName="timecode"
+                id="updateThemeTimecode"
+                name="timecode"
+                class="form-control"
+                value="{{ editableTheme.timecode }}"
+                required
+              />
+            </div>
+            <div class="col-12 form-group ">
+              <label for="updateThemeTitle"
+                >Title: {{ editableTheme.title }}</label
+              >
+              <input
+                type="text"
+                formControlName="title"
+                id="updateThemeTitle"
+                name="title"
+                class="form-control"
+                value="{{ editableTheme.title }}"
+                required
+              />
+            </div>
           </div>
-        </div>
+          <button class="btn btn-success btn-block" type="submit">Save</button>
+          <button
+            class="btn btn-secondary btn-block"
+            type="reset"
+            (click)="cancelEdit()"
+          >
+            Close
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
-  
 </div>
